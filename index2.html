@@ -18,46 +18,22 @@
 
 <body>
 
-  <div id="galeri"></div>
-
-  <script>
-    const galeri = document.getElementById('galeri');
-
-    async function dosyaVarmi(url) {
-      try {
-        const response = await fetch(url, { method: 'HEAD' });
-        return response.ok;
-      } catch (e) {
-        return false;
-      }
-    }
-
-    async function galeriOlustur() {
-      for (let i = 106; i < 120; i++) {
-        const gifDosyasi = `${i}.gif`;
-        const mp4Dosyasi = `${i}.mp4`;
-
-        if (await dosyaVarmi(gifDosyasi)) {
-          const img = document.createElement('img');
-          img.src = gifDosyasi;
-          img.alt = `GIF ${i}`;
-          galeri.appendChild(img);
-        }
-
-        if (await dosyaVarmi(mp4Dosyasi)) {
-          const video = document.createElement('video');
-          video.src = mp4Dosyasi;
-          video.controls = true;
-          video.width = 320;
-          video.height = 240;
-          galeri.appendChild(video);
-        }
-      }
-    }
-
-    galeriOlustur();
-  </script>
-
+  <img src="106.mp4" alt="Resim 8">
+  <img src="110.mp4" alt="Resim 8">
+  <img src="114.mpf" alt="Resim 8">
+  <img src="107.gif" alt="Resim 8">
+  <img src="108.gif" alt="Resim 8">
+  <img src="109.gif" alt="Resim 8">
+ 
+  <img src="111.gif" alt="Resim 8">
+  <img src="112.gif" alt="Resim 8">
+  <img src="113.gif" alt="Resim 8">
+  <img src="115.gif" alt="Resim 8">
+  <img src="116.gif" alt="Resim 8">
+  <img src="117.gif" alt="Resim 8">
+  
+  
+  
 </body>
 
 </html>
