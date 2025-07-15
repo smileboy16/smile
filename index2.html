@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Galeri</title>
+  <style>
+    body {
+      background-color: #C8DBBE;
+    }
+
+    img, video {
+      margin: 10px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="galeri"></div>
+
+  <script>
+    const galeri = document.getElementById('galeri');
+
+    async function dosyaVarmi(url) {
+      try {
+        const response = await fetch(url, { method: 'HEAD' });
+        return response.ok;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    async function galeriOlustur() {
+      for (let i = 106; i < 120; i++) {
+        const gifDosyasi = `${i}.gif`;
+        const mp4Dosyasi = `${i}.mp4`;
+
+        if (await dosyaVarmi(gifDosyasi)) {
+          const img = document.createElement('img');
+          img.src = gifDosyasi;
+          img.alt = `GIF ${i}`;
+          galeri.appendChild(img);
+        }
+
+        if (await dosyaVarmi(mp4Dosyasi)) {
+          const video = document.createElement('video');
+          video.src = mp4Dosyasi;
+          video.controls = true;
+          video.width = 320;
+          video.height = 240;
+          galeri.appendChild(video);
+        }
+      }
+    }
+
+    galeriOlustur();
+  </script>
+
+</body>
+
+</html>
