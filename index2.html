@@ -20,6 +20,30 @@
       cursor: pointer;
       pointer-events: none;
     }
+
+    /* Play button overlay */
+    a[href*=".mp4"] {
+      position: relative;
+      display: inline-block;
+      /* Wraps the video dimensions */
+    }
+
+    a[href*=".mp4"]::after {
+      content: "▶";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 50px;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      text-align: center;
+      line-height: 80px;
+      pointer-events: none;
+    }
   </style>
 </head>
 
