@@ -22,13 +22,15 @@
     }
 
     /* Play button overlay */
-    a[href*=".mp4"] {
+    a[href*=".mp4"],
+    a[href*=".MP4"] {
       position: relative;
       display: inline-block;
       /* Wraps the video dimensions */
     }
 
-    a[href*=".mp4"]::after {
+    a[href*=".mp4"]::after,
+    a[href*=".MP4"]::after {
       content: "▶";
       position: absolute;
       top: 50%;
