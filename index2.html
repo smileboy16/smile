@@ -23,7 +23,9 @@
 
     /* Play button overlay */
     a[href*=".mp4"],
-    a[href*=".MP4"] {
+    a[href*=".MP4"],
+    a[href*=".mov"],
+    a[href*=".MOV"]{
       position: relative;
       display: block;
       /* Ensures vertical stacking */
@@ -34,7 +36,9 @@
     }
 
     a[href*=".mp4"]::after,
-    a[href*=".MP4"]::after {
+    a[href*=".MP4"]::after,
+    a[href*=".mov"]::after,
+    a[href*=".MOV"]::after{
       content: "▶";
       position: absolute;
       top: 50%;
