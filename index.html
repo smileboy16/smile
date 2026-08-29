@@ -1,536 +1,1152 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html lang="tr">
 <head>
   <meta charset="utf-8">
-  <title>Smile</title>
+  <title>Smile - Medya Galerisi</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: #161f30;
+      --card-hover: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-color: #6366f1;
+      --accent-hover: #4f46e5;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      background-color: #C8DBBE;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      padding-bottom: 60px;
     }
 
-    img,
-    video {
-      width: 100%;
-      max-width: 600px;
-      height: auto;
-      object-fit: contain;
-      margin: 20px 0;
-      display: block;
-      cursor: pointer;
-      pointer-events: none;
+    /* Header & Sticky Navigation */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 15, 25, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 24px;
     }
 
-    /* Play button overlay */
-    a[href*=".mp4"],
-    a[href*=".MP4"] {
+    .header-container {
+      max-width: 1600px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    }
+
+    .logo-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .logo-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .nav-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-btn {
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .nav-btn:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-btn.active {
+      background: var(--accent-color);
+      color: #fff;
+      border-color: var(--accent-color);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+    }
+
+    .total-badge {
+      background: rgba(99, 102, 241, 0.15);
+      color: #818cf8;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    /* Main Grid Layout */
+    .container {
+      max-width: 1600px;
+      margin: 24px auto;
+      padding: 0 20px;
+    }
+
+    /* Requirement:
+       Masaüstünde 5'er sıra (Desktop: 5 columns)
+       Mobil sürümde 2'şer sıra (Mobile: 2 columns)
+    */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 1199px) and (min-width: 769px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .header {
+        padding: 12px 16px;
+      }
+      .container {
+        padding: 0 12px;
+        margin: 16px auto;
+      }
+      .logo-subtitle {
+        display: none;
+      }
+    }
+
+    /* Card Item Styling */
+    .gallery-card {
       position: relative;
-      display: block;
-      /* Ensures vertical stacking */
-      width: 100%;
-      max-width: 600px;
-      margin: 20px 0;
-      /* Consistent spacing */
+      background: var(--card-bg);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
+      color: inherit;
     }
 
-    a[href*=".mp4"]::after,
-    a[href*=".MP4"]::after {
+    .gallery-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: rgba(99, 102, 241, 0.5);
+      box-shadow: var(--shadow-lg), 0 0 20px rgba(99, 102, 241, 0.25);
+      z-index: 2;
+    }
+
+    .gallery-card img,
+    .gallery-card video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-card:hover img,
+    .gallery-card:hover video {
+      transform: scale(1.06);
+    }
+
+    .gallery-card.is-video::after {
       content: "▶";
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 50px;
-      color: white;
-      background: rgba(0, 0, 0, 0.5);
+      width: 48px;
+      height: 48px;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border-radius: 50%;
-      width: 80px;
-      height: 80px;
-      text-align: center;
-      line-height: 80px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      padding-left: 3px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
       pointer-events: none;
     }
+
+    .gallery-card.is-video:hover::after {
+      background: var(--accent-color);
+      transform: translate(-50%, -50%) scale(1.15);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.8);
+    }
+
+    .media-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(6px);
+      color: #e2e8f0;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+      letter-spacing: 0.05em;
+      z-index: 1;
+    }
+
+    /* External Links & Iframes */
+    .external-card {
+      background: linear-gradient(145deg, #1e1b4b, #2e1065);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      text-align: center;
+      border-color: rgba(168, 85, 247, 0.3);
+    }
+
+    .external-card:hover {
+      border-color: #a855f7;
+      box-shadow: 0 10px 30px rgba(168, 85, 247, 0.35);
+    }
+
+    .external-card-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .external-card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #f3e8ff;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+
+    .iframe-card {
+      overflow: hidden;
+    }
+
+    .iframe-card iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 8, 15, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-content-wrapper {
+      position: relative;
+      max-width: 90vw;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-media-container {
+      max-width: 100%;
+      max-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 14px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      background: #000;
+      border: 1px solid var(--border-color);
+    }
+
+    .lightbox-media-container img,
+    .lightbox-media-container video {
+      max-width: 90vw;
+      max-height: 75vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .lightbox-controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 1010;
+    }
+
+    .lightbox-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lightbox-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.1);
+    }
+
+    .lightbox-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 1005;
+    }
+
+    .lightbox-nav-btn:hover {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+    }
+
+    .lightbox-nav-prev { left: 24px; }
+    .lightbox-nav-next { right: 24px; }
+
+    @media (max-width: 640px) {
+      .lightbox-nav-prev { left: 10px; width: 42px; height: 42px; font-size: 18px; }
+      .lightbox-nav-next { right: 10px; width: 42px; height: 42px; font-size: 18px; }
+      .lightbox-controls { top: 10px; right: 10px; }
+    }
+
+    .lightbox-footer {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      gap: 16px;
+    }
+
+    .lightbox-filename {
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+
+    .lightbox-counter {
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 12px;
+      border-radius: 12px;
+    }
+
+    .lightbox-open-btn {
+      color: #818cf8;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .lightbox-open-btn:hover {
+      background: var(--accent-color);
+      color: #fff;
+    }
+
+    /* Back to Top button */
+    .back-top-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      z-index: 90;
+    }
+
+    .back-top-btn.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .back-top-btn:hover {
+      transform: translateY(-3px) scale(1.08);
+      background: var(--accent-hover);
+    }
   </style>
+
 </head>
-
 <body>
-  <br>
+  <header class="header">
+    <div class="header-container">
+      <div class="logo-group">
+        <div class="logo-icon">😊</div>
+        <div>
+          <h1 class="logo-title">Smile Galerisi</h1>
+          <p class="logo-subtitle">Medya ve Video Koleksiyonu</p>
+        </div>
+      </div>
+      <div class="nav-group">
+        <span class="total-badge" id="totalBadge">Medya</span>
+        <a href="index.html" class="nav-btn active">Ana Sayfa</a>
+        <a href="index2.html" class="nav-btn">Yeni Sayfa (Galeri 2)</a>
+      </div>
+    </div>
+  </header>
 
-  <h1><a href="index2.html">Yeni Sayfa</a></h1>
+  <main class="container">
+    <div class="gallery-grid">
+      
+  
 
-  <a href="https://www.boyfriendtv.com/videos/306112/horny-twink-boys-fuck/?ct=12--1553623556">Video 12</a>
+  
 
-  <br><br>
+  <a href="https://www.boyfriendtv.com/videos/306112/horny-twink-boys-fuck/?ct=12--1553623556" target="_blank" class="gallery-card external-card"><div class="external-card-icon">🌐</div><div class="external-card-title">Video 12</div></a>
 
+  
 
-  <a href="9.gif" target="_blank"><img src="9.gif" alt="Resim 9"></a>
 
-  <br><br>
+  <a class="gallery-card" href="9.gif" target="_blank"><img src="9.gif" alt="Resim 9"></a>
 
-  <a href="10.gif" target="_blank"><img src="10.gif" alt="Resim 10"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="10.gif" target="_blank"><img src="10.gif" alt="Resim 10"></a>
 
-  <a href="11.gif" target="_blank"><img src="11.gif" alt="Resim 11"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="11.gif" target="_blank"><img src="11.gif" alt="Resim 11"></a>
 
-  <a href="12.gif" target="_blank"><img src="12.gif" alt="Resim 12"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="12.gif" target="_blank"><img src="12.gif" alt="Resim 12"></a>
 
-  <a href="13.gif" target="_blank"><img src="13.gif" alt="Resim 13"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="13.gif" target="_blank"><img src="13.gif" alt="Resim 13"></a>
 
-  <a href="14.gif" target="_blank"><img src="14.gif" alt="Resim 14"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="14.gif" target="_blank"><img src="14.gif" alt="Resim 14"></a>
 
-  <a href="15.gif" target="_blank"><img src="15.gif" alt="Resim 15"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="15.gif" target="_blank"><img src="15.gif" alt="Resim 15"></a>
 
-  <a href="16.gif" target="_blank"><img src="16.gif" alt="Resim 16"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="16.gif" target="_blank"><img src="16.gif" alt="Resim 16"></a>
 
-  <a href="42.gif" target="_blank"><img src="42.gif" alt="Resim 42"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="42.gif" target="_blank"><img src="42.gif" alt="Resim 42"></a>
 
-  <a href="43.gif" target="_blank"><img src="43.gif" alt="Resim 43"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="43.gif" target="_blank"><img src="43.gif" alt="Resim 43"></a>
 
-  <a href="44.gif" target="_blank"><img src="44.gif" alt="Resim 44"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="44.gif" target="_blank"><img src="44.gif" alt="Resim 44"></a>
 
-  <a href="61.gif" target="_blank"><img src="61.gif" alt="Resim 61"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="61.gif" target="_blank"><img src="61.gif" alt="Resim 61"></a>
 
-  <iframe src="https://www.boyfriendtv.com/embed/306112/61411/600/450/" width="600" height="450" frameborder="0"
-    scrolling="no"></iframe>
+  
 
-  <br><br>
+  <div class="gallery-card iframe-card"><iframe src="https://www.boyfriendtv.com/embed/306112/61411/600/450/" width="600" height="450" frameborder="0"
+    scrolling="no"></iframe></div>
 
-  <a href="62.gif" target="_blank"><img src="62.gif" alt="Resim 62"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="62.gif" target="_blank"><img src="62.gif" alt="Resim 62"></a>
 
-  <a href="63.gif" target="_blank"><img src="63.gif" alt="Resim 63"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="63.gif" target="_blank"><img src="63.gif" alt="Resim 63"></a>
 
-  <a href="64.gif" target="_blank"><img src="64.gif" alt="Resim 64"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="64.gif" target="_blank"><img src="64.gif" alt="Resim 64"></a>
 
-  <a href="65.gif" target="_blank"><img src="65.gif" alt="Resim 65"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="65.gif" target="_blank"><img src="65.gif" alt="Resim 65"></a>
 
-  <a href="66.gif" target="_blank"><img src="66.gif" alt="Resim 66"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="66.gif" target="_blank"><img src="66.gif" alt="Resim 66"></a>
 
-  <a href="67.gif" target="_blank"><img src="67.gif" alt="Resim 67"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="67.gif" target="_blank"><img src="67.gif" alt="Resim 67"></a>
 
-  <a href="68.gif" target="_blank"><img src="68.gif" alt="Resim 68"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="68.gif" target="_blank"><img src="68.gif" alt="Resim 68"></a>
 
-  <a href="69.gif" target="_blank"><img src="69.gif" alt="Resim 69"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="69.gif" target="_blank"><img src="69.gif" alt="Resim 69"></a>
 
-  <a href="70.gif" target="_blank"><img src="70.gif" alt="Resim 70"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="70.gif" target="_blank"><img src="70.gif" alt="Resim 70"></a>
 
-  <a href="71.gif" target="_blank"><img src="71.gif" alt="Resim 71"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="71.gif" target="_blank"><img src="71.gif" alt="Resim 71"></a>
 
-  <a href="72.gif" target="_blank"><img src="72.gif" alt="Resim 72"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="72.gif" target="_blank"><img src="72.gif" alt="Resim 72"></a>
 
-  <a href="73.gif" target="_blank"><img src="73.gif" alt="Resim 73"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="73.gif" target="_blank"><img src="73.gif" alt="Resim 73"></a>
 
-  <a href="74.gif" target="_blank"><img src="74.gif" alt="Resim 74"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="74.gif" target="_blank"><img src="74.gif" alt="Resim 74"></a>
 
-  <a href="75.gif" target="_blank"><img src="75.gif" alt="Resim 75"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="75.gif" target="_blank"><img src="75.gif" alt="Resim 75"></a>
 
-  <a href="76.gif" target="_blank"><img src="76.gif" alt="Resim 76"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="76.gif" target="_blank"><img src="76.gif" alt="Resim 76"></a>
 
-  <a href="77.gif" target="_blank"><img src="77.gif" alt="Resim 77"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="77.gif" target="_blank"><img src="77.gif" alt="Resim 77"></a>
 
-  <a href="78.gif" target="_blank"><img src="78.gif" alt="Resim 78"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="78.gif" target="_blank"><img src="78.gif" alt="Resim 78"></a>
 
-  <a href="79.gif" target="_blank"><img src="79.gif" alt="Resim 79"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="79.gif" target="_blank"><img src="79.gif" alt="Resim 79"></a>
 
-  <a href="80.gif" target="_blank"><img src="80.gif" alt="Resim 80"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="80.gif" target="_blank"><img src="80.gif" alt="Resim 80"></a>
 
-  <a href="81.gif" target="_blank"><img src="81.gif" alt="Resim 81"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="81.gif" target="_blank"><img src="81.gif" alt="Resim 81"></a>
 
-  <a href="82.gif" target="_blank"><img src="82.gif" alt="Resim 82"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="82.gif" target="_blank"><img src="82.gif" alt="Resim 82"></a>
 
-  <a href="83.gif" target="_blank"><img src="83.gif" alt="Resim 83"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="83.gif" target="_blank"><img src="83.gif" alt="Resim 83"></a>
 
-  <a href="84.gif" target="_blank"><img src="84.gif" alt="Resim 84"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="84.gif" target="_blank"><img src="84.gif" alt="Resim 84"></a>
 
-  <a href="85.gif" target="_blank"><img src="85.gif" alt="Resim 85"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="85.gif" target="_blank"><img src="85.gif" alt="Resim 85"></a>
 
-  <a href="86.gif" target="_blank"><img src="86.gif" alt="Resim 86"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="86.gif" target="_blank"><img src="86.gif" alt="Resim 86"></a>
 
-  <a href="87.gif" target="_blank"><img src="87.gif" alt="Resim 87"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="87.gif" target="_blank"><img src="87.gif" alt="Resim 87"></a>
 
-  <a href="88.gif" target="_blank"><img src="88.gif" alt="Resim 88"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="88.gif" target="_blank"><img src="88.gif" alt="Resim 88"></a>
 
-  <a href="89.gif" target="_blank"><img src="89.gif" alt="Resim 89"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="89.gif" target="_blank"><img src="89.gif" alt="Resim 89"></a>
 
-  <a href="90.gif" target="_blank"><img src="90.gif" alt="Resim 90"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="90.gif" target="_blank"><img src="90.gif" alt="Resim 90"></a>
 
-  <a href="91.gif" target="_blank"><img src="91.gif" alt="Resim 91"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="91.gif" target="_blank"><img src="91.gif" alt="Resim 91"></a>
 
-  <a href="92.gif" target="_blank"><img src="92.gif" alt="Resim 92"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="92.gif" target="_blank"><img src="92.gif" alt="Resim 92"></a>
 
-  <a href="93.gif" target="_blank"><img src="93.gif" alt="Resim 93"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="93.gif" target="_blank"><img src="93.gif" alt="Resim 93"></a>
 
-  <a href="94.gif" target="_blank"><img src="94.gif" alt="Resim 94"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="94.gif" target="_blank"><img src="94.gif" alt="Resim 94"></a>
 
-  <a href="95.gif" target="_blank"><img src="95.gif" alt="Resim 95"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="95.gif" target="_blank"><img src="95.gif" alt="Resim 95"></a>
 
-  <a href="96.gif" target="_blank"><img src="96.gif" alt="Resim 96"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="96.gif" target="_blank"><img src="96.gif" alt="Resim 96"></a>
 
-  <a href="97.gif" target="_blank"><img src="97.gif" alt="Resim 97"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="97.gif" target="_blank"><img src="97.gif" alt="Resim 97"></a>
 
-  <a href="98.gif" target="_blank"><img src="98.gif" alt="Resim 98"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="98.gif" target="_blank"><img src="98.gif" alt="Resim 98"></a>
 
-  <a href="99.jpg" target="_blank"><img src="99.jpg" alt="Resim 99"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="99.jpg" target="_blank"><img src="99.jpg" alt="Resim 99"></a>
 
-  <a href="100.gif" target="_blank"><img src="100.gif" alt="Resim 100"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="100.gif" target="_blank"><img src="100.gif" alt="Resim 100"></a>
 
-  <a href="101.gif" target="_blank"><img src="101.gif" alt="Resim 101"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="101.gif" target="_blank"><img src="101.gif" alt="Resim 101"></a>
 
-  <a href="102.gif" target="_blank"><img src="102.gif" alt="Resim 102"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="102.gif" target="_blank"><img src="102.gif" alt="Resim 102"></a>
 
-  <a href="103.gif" target="_blank"><img src="103.gif" alt="Resim 103"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="103.gif" target="_blank"><img src="103.gif" alt="Resim 103"></a>
 
-  <a href="104.gif" target="_blank"><img src="104.gif" alt="Resim 104"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="104.gif" target="_blank"><img src="104.gif" alt="Resim 104"></a>
 
-  <a href="105.gif" target="_blank"><img src="105.gif" alt="Resim 105"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="105.gif" target="_blank"><img src="105.gif" alt="Resim 105"></a>
 
-  <a href="1.jpg" target="_blank"><img src="1.jpg" alt="Resim 1"></a>
-  <br><br>
+  
 
-  <a href="2.jpg" target="_blank"><img src="2.jpg" alt="Resim 2"></a>
+  <a class="gallery-card" href="1.jpg" target="_blank"><img src="1.jpg" alt="Resim 1"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="2.jpg" target="_blank"><img src="2.jpg" alt="Resim 2"></a>
 
-  <a href="3.jpg" target="_blank"><img src="3.jpg" alt="Resim 3"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="3.jpg" target="_blank"><img src="3.jpg" alt="Resim 3"></a>
 
-  <a href="https://media1_g1.gayboystube.com/videos/5/c/c/e/9/5cce908c62d1e.mp4">Video 1</a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="https://media1_g1.gayboystube.com/videos/5/c/c/e/9/5cce908c62d1e.mp4">Video 1</a>
 
-  <a href="4.gif" target="_blank"><img src="4.gif" alt="Resim 4"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="4.gif" target="_blank"><img src="4.gif" alt="Resim 4"></a>
 
-  <a href="5.gif" target="_blank"><img src="5.gif" alt="Resim 5"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="5.gif" target="_blank"><img src="5.gif" alt="Resim 5"></a>
 
-  <a href="7.gif" target="_blank"><img src="7.gif" alt="Resim 7"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="7.gif" target="_blank"><img src="7.gif" alt="Resim 7"></a>
 
-  <a href="17.png" target="_blank"><img src="17.png" alt="Resim 17"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="17.png" target="_blank"><img src="17.png" alt="Resim 17"></a>
 
-  <a href="18.png" target="_blank"><img src="18.png" alt="Resim 18"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="18.png" target="_blank"><img src="18.png" alt="Resim 18"></a>
 
-  <a href="19.gif" target="_blank"><img src="19.gif" alt="Resim 19"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="19.gif" target="_blank"><img src="19.gif" alt="Resim 19"></a>
 
-  <a href="20.png" target="_blank"><img src="20.png" alt="Resim 20"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="20.png" target="_blank"><img src="20.png" alt="Resim 20"></a>
 
-  <a href="21.png" target="_blank"><img src="21.png" alt="Resim 21"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="21.png" target="_blank"><img src="21.png" alt="Resim 21"></a>
 
-  <a href="22.png" target="_blank"><img src="22.png" alt="Resim 22"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="22.png" target="_blank"><img src="22.png" alt="Resim 22"></a>
 
-  <a href="23.gif" target="_blank"><img src="23.gif" alt="Resim 23"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="23.gif" target="_blank"><img src="23.gif" alt="Resim 23"></a>
 
-  <a href="24.jpg" target="_blank"><img src="24.jpg" alt="Resim 24"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="24.jpg" target="_blank"><img src="24.jpg" alt="Resim 24"></a>
 
-  <a href="25.png" target="_blank"><img src="25.png" alt="Resim 25"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="25.png" target="_blank"><img src="25.png" alt="Resim 25"></a>
 
-  <a href="26.png" target="_blank"><img src="26.png" alt="Resim 26"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="26.png" target="_blank"><img src="26.png" alt="Resim 26"></a>
 
-  <a href="27.gif" target="_blank"><img src="27.gif" alt="Resim 27"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="27.gif" target="_blank"><img src="27.gif" alt="Resim 27"></a>
 
-  <a href="28.png" target="_blank"><img src="28.png" alt="Resim 28"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="28.png" target="_blank"><img src="28.png" alt="Resim 28"></a>
 
-  <a href="29.gif" target="_blank"><img src="29.gif" alt="Resim 29"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="29.gif" target="_blank"><img src="29.gif" alt="Resim 29"></a>
 
-  <a href="30.gif" target="_blank"><img src="30.gif" alt="Resim 30"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="30.gif" target="_blank"><img src="30.gif" alt="Resim 30"></a>
 
-  <a href="31.png" target="_blank"><img src="31.png" alt="Resim 31"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="31.png" target="_blank"><img src="31.png" alt="Resim 31"></a>
 
-  <a href="32.jpg" target="_blank"><img src="32.jpg" alt="Resim 32"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="32.jpg" target="_blank"><img src="32.jpg" alt="Resim 32"></a>
 
-  <a href="33.gif" target="_blank"><img src="33.gif" alt="Resim 33"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="33.gif" target="_blank"><img src="33.gif" alt="Resim 33"></a>
 
-  <a href="34.jpg" target="_blank"><img src="34.jpg" alt="Resim 34"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="34.jpg" target="_blank"><img src="34.jpg" alt="Resim 34"></a>
 
-  <a href="35.png" target="_blank"><img src="35.png" alt="Resim 35"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="35.png" target="_blank"><img src="35.png" alt="Resim 35"></a>
 
-  <a href="36.png" target="_blank"><img src="36.png" alt="Resim 36"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="36.png" target="_blank"><img src="36.png" alt="Resim 36"></a>
 
-  <a href="37.jpg" target="_blank"><img src="37.jpg" alt="Resim 37"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="37.jpg" target="_blank"><img src="37.jpg" alt="Resim 37"></a>
 
-  <a href="38.jpg" target="_blank"><img src="38.jpg" alt="Resim 38"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="38.jpg" target="_blank"><img src="38.jpg" alt="Resim 38"></a>
 
-  <a href="39.png" target="_blank"><img src="39.png" alt="Resim 39"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="39.png" target="_blank"><img src="39.png" alt="Resim 39"></a>
 
-  <a href="40.png" target="_blank"><img src="40.png" alt="Resim 40"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="40.png" target="_blank"><img src="40.png" alt="Resim 40"></a>
 
-  <a href="41.png" target="_blank"><img src="41.png" alt="Resim 41"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="41.png" target="_blank"><img src="41.png" alt="Resim 41"></a>
 
-  <a href="45.png" target="_blank"><img src="45.png" alt="Resim 45"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="45.png" target="_blank"><img src="45.png" alt="Resim 45"></a>
 
-  <a href="46.jpg" target="_blank"><img src="46.jpg" alt="Resim 46"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="46.jpg" target="_blank"><img src="46.jpg" alt="Resim 46"></a>
 
-  <a href="47.jpg" target="_blank"><img src="47.jpg" alt="Resim 47"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="47.jpg" target="_blank"><img src="47.jpg" alt="Resim 47"></a>
 
-  <a href="48.jpg" target="_blank"><img src="48.jpg" alt="Resim 48"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="48.jpg" target="_blank"><img src="48.jpg" alt="Resim 48"></a>
 
-  <a href="49.jpg" target="_blank"><img src="49.jpg" alt="Resim 49"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="49.jpg" target="_blank"><img src="49.jpg" alt="Resim 49"></a>
 
-  <a href="50.jpg" target="_blank"><img src="50.jpg" alt="Resim 50"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="50.jpg" target="_blank"><img src="50.jpg" alt="Resim 50"></a>
 
-  <a href="51.gif" target="_blank"><img src="51.gif" alt="Resim 51"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="51.gif" target="_blank"><img src="51.gif" alt="Resim 51"></a>
 
-  <a href="52.jpg" target="_blank"><img src="52.jpg" alt="Resim 52"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="52.jpg" target="_blank"><img src="52.jpg" alt="Resim 52"></a>
 
-  <a href="53.jpg" target="_blank"><img src="53.jpg" alt="Resim 53"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="53.jpg" target="_blank"><img src="53.jpg" alt="Resim 53"></a>
 
-  <a href="54.jpg" target="_blank"><img src="54.jpg" alt="Resim 54"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="54.jpg" target="_blank"><img src="54.jpg" alt="Resim 54"></a>
 
-  <a href="55.jpg" target="_blank"><img src="55.jpg" alt="Resim 55"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="55.jpg" target="_blank"><img src="55.jpg" alt="Resim 55"></a>
 
-  <a href="56.jpg" target="_blank"><img src="56.jpg" alt="Resim 56"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="56.jpg" target="_blank"><img src="56.jpg" alt="Resim 56"></a>
 
-  <a href="57.png" target="_blank"><img src="57.png" alt="Resim 57"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="57.png" target="_blank"><img src="57.png" alt="Resim 57"></a>
 
-  <a href="58.jpg" target="_blank"><img src="58.jpg" alt="Resim 58"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="58.jpg" target="_blank"><img src="58.jpg" alt="Resim 58"></a>
 
-  <a href="59.gif" target="_blank"><img src="59.gif" alt="Resim 59"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="59.gif" target="_blank"><img src="59.gif" alt="Resim 59"></a>
 
-  <a href="60.gif" target="_blank"><img src="60.gif" alt="Resim 60"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="60.gif" target="_blank"><img src="60.gif" alt="Resim 60"></a>
 
-  <a href="https://vk.com/video426796996_456239221">Le Chan (2004)</a>
+  
 
-  <br><br>
+  <a href="https://vk.com/video426796996_456239221" target="_blank" class="gallery-card external-card"><div class="external-card-icon">🌐</div><div class="external-card-title">Le Chan (2004)</div></a>
 
-  <a href="8.jpg" target="_blank"><img src="8.jpg" alt="Resim 8"></a>
+  
 
-  <br><br>
+  <a class="gallery-card" href="8.jpg" target="_blank"><img src="8.jpg" alt="Resim 8"></a>
 
-  <a href="https://www.gayboystube.com/video/1259745/study-break-gay-teen-porn">Video 3</a>
+  
 
-  <br><br>
+  <a href="https://www.gayboystube.com/video/1259745/study-break-gay-teen-porn" target="_blank" class="gallery-card external-card"><div class="external-card-icon">🌐</div><div class="external-card-title">Video 3</div></a>
 
-  <a href="https://www.boyfriendtv.com/videos/747661/radak-and-sasa/">Video 4</a>
+  
 
-  <br><br>
+  <a href="https://www.boyfriendtv.com/videos/747661/radak-and-sasa/" target="_blank" class="gallery-card external-card"><div class="external-card-icon">🌐</div><div class="external-card-title">Video 4</div></a>
 
-  <a href="https://www.boyfriendtv.com/videos/421425/taxi/">Video 5</a>
+  
 
-  <br><br>
+  <a href="https://www.boyfriendtv.com/videos/421425/taxi/" target="_blank" class="gallery-card external-card"><div class="external-card-icon">🌐</div><div class="external-card-title">Video 5</div></a>
 
-  <a href="https://www.boyfriendtv.com/videos/808562/hotstuds-matthew-keading-bareback/">Video 6</a>
+  
 
-  <br><br>
+  <a href="https://www.boyfriendtv.com/videos/808562/hotstuds-matthew-keading-bareback/" target="_blank" class="gallery-card external-card"><div class="external-card-icon">🌐</div><div class="external-card-title">Video 6</div></a>
 
-  <a href="https://www.boyfriendtv.com/videos/328904/friends/">Video 7</a>
+  
 
-  <br><br>
+  <a href="https://www.boyfriendtv.com/videos/328904/friends/" target="_blank" class="gallery-card external-card"><div class="external-card-icon">🌐</div><div class="external-card-title">Video 7</div></a>
 
-  <a href="https://www.boyfriendtv.com/videos/974248/twinks-kai-locks-and-dylan-matthews-bareback-fuck/">Video 8</a>
+  
 
-  <br><br>
+  <a href="https://www.boyfriendtv.com/videos/974248/twinks-kai-locks-and-dylan-matthews-bareback-fuck/" target="_blank" class="gallery-card external-card"><div class="external-card-icon">🌐</div><div class="external-card-title">Video 8</div></a>
 
-  <a href="https://www.boyfriendtv.com/videos/376604/beatiful-18yo-twinks-at-pool-sex-and-cums/">Video 9</a>
+  
 
-  <br><br>
+  <a href="https://www.boyfriendtv.com/videos/376604/beatiful-18yo-twinks-at-pool-sex-and-cums/" target="_blank" class="gallery-card external-card"><div class="external-card-icon">🌐</div><div class="external-card-title">Video 9</div></a>
 
-  <a href="https://www.boyfriendtv.com/videos/944593/pool-boys-melvin-moore-and-alann23/">Video 10</a>
+  
 
-  <br><br>
+  <a href="https://www.boyfriendtv.com/videos/944593/pool-boys-melvin-moore-and-alann23/" target="_blank" class="gallery-card external-card"><div class="external-card-icon">🌐</div><div class="external-card-title">Video 10</div></a>
 
-  <a href="https://www.gayboystube.com/video/1506136/bare-poolparty-he">Video 11</a>
+  
 
-  <br><br>
+  <a href="https://www.gayboystube.com/video/1506136/bare-poolparty-he" target="_blank" class="gallery-card external-card"><div class="external-card-icon">🌐</div><div class="external-card-title">Video 11</div></a>
 
+  
 
 
 
+
+
+
+    </div>
+  </main>
+
+  
+  <!-- Lightbox Modal DOM -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-controls">
+      <button class="lightbox-btn" id="lightboxCloseBtn" title="Kapat (Esc)">✕</button>
+    </div>
+    <button class="lightbox-nav-btn lightbox-nav-prev" id="lightboxPrevBtn" title="Önceki (Sol Ok)">❮</button>
+    <button class="lightbox-nav-btn lightbox-nav-next" id="lightboxNextBtn" title="Sonraki (Sağ Ok)">❯</button>
+
+    <div class="lightbox-content-wrapper">
+      <div class="lightbox-media-container" id="lightboxMediaContainer"></div>
+      <div class="lightbox-footer">
+        <span class="lightbox-filename" id="lightboxFilename"></span>
+        <span class="lightbox-counter" id="lightboxCounter"></span>
+        <a href="#" target="_blank" class="lightbox-open-btn" id="lightboxOpenBtn">
+          ↗ Sekmede Aç
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <button class="back-top-btn" id="backTopBtn" title="Yukarı Çık">▲</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = Array.from(document.querySelectorAll('.gallery-card'));
+      const lightbox = document.getElementById('lightbox');
+      const lightboxMediaContainer = document.getElementById('lightboxMediaContainer');
+      const lightboxFilename = document.getElementById('lightboxFilename');
+      const lightboxCounter = document.getElementById('lightboxCounter');
+      const lightboxOpenBtn = document.getElementById('lightboxOpenBtn');
+      const closeBtn = document.getElementById('lightboxCloseBtn');
+      const prevBtn = document.getElementById('lightboxPrevBtn');
+      const nextBtn = document.getElementById('lightboxNextBtn');
+      const backTopBtn = document.getElementById('backTopBtn');
+
+      let currentIndex = 0;
+      const mediaItems = [];
+
+      cards.forEach((card) => {
+        const href = card.getAttribute('href');
+        if (!href) return;
+
+        const isVideo = href.match(/\.(mp4|MP4|mov|MOV)($|\?|#)/i);
+        const isImage = href.match(/\.(gif|GIF|jpg|JPG|png|PNG|jpeg|JPEG|webp)($|\?|#)/i);
+
+        if (isVideo || isImage) {
+          card.classList.add('lightbox-trigger');
+          if (isVideo) card.classList.add('is-video');
+
+          // Add media format badge if not present
+          if (!card.querySelector('.media-badge')) {
+            const ext = href.split('.').pop().split('#')[0].split('?')[0].toUpperCase();
+            const badge = document.createElement('span');
+            badge.className = 'media-badge';
+            badge.textContent = ext;
+            card.appendChild(badge);
+          }
+
+          const itemIndex = mediaItems.length;
+          mediaItems.push({
+            url: href,
+            type: isVideo ? 'video' : 'image',
+            filename: href,
+            card: card
+          });
+
+          card.addEventListener('click', (e) => {
+            e.preventDefault();
+            openLightbox(itemIndex);
+          });
+        }
+      });
+
+      // Update total badge count
+      const totalBadge = document.getElementById('totalBadge');
+      if (totalBadge) {
+        totalBadge.textContent = `${mediaItems.length} Medya`;
+      }
+
+      function openLightbox(index) {
+        if (index < 0 || index >= mediaItems.length) return;
+        currentIndex = index;
+        const item = mediaItems[currentIndex];
+
+        lightboxMediaContainer.innerHTML = '';
+        if (item.type === 'video') {
+          const videoEl = document.createElement('video');
+          videoEl.src = item.url;
+          videoEl.controls = true;
+          videoEl.autoplay = true;
+          videoEl.loop = true;
+          videoEl.setAttribute('playsinline', '');
+          lightboxMediaContainer.appendChild(videoEl);
+        } else {
+          const imgEl = document.createElement('img');
+          imgEl.src = item.url;
+          imgEl.alt = item.filename;
+          lightboxMediaContainer.appendChild(imgEl);
+        }
+
+        lightboxFilename.textContent = item.filename;
+        lightboxCounter.textContent = `${currentIndex + 1} / ${mediaItems.length}`;
+        lightboxOpenBtn.href = item.url;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        lightboxMediaContainer.innerHTML = '';
+      }
+
+      function showNext() {
+        openLightbox((currentIndex + 1) % mediaItems.length);
+      }
+
+      function showPrev() {
+        openLightbox((currentIndex - 1 + mediaItems.length) % mediaItems.length);
+      }
+
+      if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+      if (nextBtn) nextBtn.addEventListener('click', showNext);
+      if (prevBtn) prevBtn.addEventListener('click', showPrev);
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrev();
+      });
+
+      // Back to top scrolling
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          backTopBtn.classList.add('visible');
+        } else {
+          backTopBtn.classList.remove('visible');
+        }
+      });
+
+      backTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
 
 </body>
-
 </html>
