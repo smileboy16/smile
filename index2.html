@@ -1,388 +1,1116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Galeri</title>
+  <meta charset="utf-8">
+  <title>Galeri 2 - Smile Medya</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
   <style>
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: #161f30;
+      --card-hover: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-color: #6366f1;
+      --accent-hover: #4f46e5;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+      --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      background-color: #C8DBBE;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      padding-bottom: 60px;
     }
 
-    img,
-    video {
-      width: 100%;
-      max-width: 600px;
-      height: auto;
-      object-fit: contain;
-      margin: 20px 0;
-      display: block;
-      cursor: pointer;
-      pointer-events: none;
+    /* Header & Sticky Navigation */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11, 15, 25, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 16px 24px;
     }
 
-    /* Play button overlay */
-    a[href*=".mp4"],
-    a[href*=".MP4"],
-    a[href*=".mov"],
-    a[href*=".MOV"]{
+    .header-container {
+      max-width: 1600px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+    }
+
+    .logo-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .logo-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .nav-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-btn {
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .nav-btn:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-btn.active {
+      background: var(--accent-color);
+      color: #fff;
+      border-color: var(--accent-color);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+    }
+
+    .total-badge {
+      background: rgba(99, 102, 241, 0.15);
+      color: #818cf8;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    /* Main Grid Layout */
+    .container {
+      max-width: 1600px;
+      margin: 24px auto;
+      padding: 0 20px;
+    }
+
+    /* Requirement:
+       Masaüstünde 5'er sıra (Desktop: 5 columns)
+       Mobil sürümde 2'şer sıra (Mobile: 2 columns)
+    */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 1199px) and (min-width: 769px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .header {
+        padding: 12px 16px;
+      }
+
+      .container {
+        padding: 0 12px;
+        margin: 16px auto;
+      }
+
+      .logo-subtitle {
+        display: none;
+      }
+    }
+
+    /* Card Item Styling */
+    .gallery-card {
       position: relative;
-      display: block;
-      /* Ensures vertical stacking */
-      width: 100%;
-      max-width: 600px;
-      margin: 20px 0;
-      /* Consistent spacing */
+      background: var(--card-bg);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
+      color: inherit;
     }
 
-    a[href*=".mp4"]::after,
-    a[href*=".MP4"]::after,
-    a[href*=".mov"]::after,
-    a[href*=".MOV"]::after{
+    .gallery-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: rgba(99, 102, 241, 0.5);
+      box-shadow: var(--shadow-lg), 0 0 20px rgba(99, 102, 241, 0.25);
+      z-index: 2;
+    }
+
+    .gallery-card img,
+    .gallery-card video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-card:hover img,
+    .gallery-card:hover video {
+      transform: scale(1.06);
+    }
+
+    .gallery-card.is-video::after {
       content: "▶";
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 50px;
-      color: white;
-      background: rgba(0, 0, 0, 0.5);
+      width: 48px;
+      height: 48px;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       border-radius: 50%;
-      width: 80px;
-      height: 80px;
-      text-align: center;
-      line-height: 80px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      padding-left: 3px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
       pointer-events: none;
     }
+
+    .gallery-card.is-video:hover::after {
+      background: var(--accent-color);
+      transform: translate(-50%, -50%) scale(1.15);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.8);
+    }
+
+    .media-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(6px);
+      color: #e2e8f0;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+      letter-spacing: 0.05em;
+      z-index: 1;
+    }
+
+    /* External Links & Iframes */
+    .external-card {
+      background: linear-gradient(145deg, #1e1b4b, #2e1065);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      text-align: center;
+      border-color: rgba(168, 85, 247, 0.3);
+    }
+
+    .external-card:hover {
+      border-color: #a855f7;
+      box-shadow: 0 10px 30px rgba(168, 85, 247, 0.35);
+    }
+
+    .external-card-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .external-card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #f3e8ff;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+
+    .iframe-card {
+      overflow: hidden;
+    }
+
+    .iframe-card iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 8, 15, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-content-wrapper {
+      position: relative;
+      max-width: 90vw;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox-media-container {
+      max-width: 100%;
+      max-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 14px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      background: #000;
+      border: 1px solid var(--border-color);
+    }
+
+    .lightbox-media-container img,
+    .lightbox-media-container video {
+      max-width: 90vw;
+      max-height: 75vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .lightbox-controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 1010;
+    }
+
+    .lightbox-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .lightbox-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: scale(1.1);
+    }
+
+    .lightbox-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      z-index: 1005;
+    }
+
+    .lightbox-nav-btn:hover {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+    }
+
+    .lightbox-nav-prev {
+      left: 24px;
+    }
+
+    .lightbox-nav-next {
+      right: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .lightbox-nav-prev {
+        left: 10px;
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+      }
+
+      .lightbox-nav-next {
+        right: 10px;
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+      }
+
+      .lightbox-controls {
+        top: 10px;
+        right: 10px;
+      }
+    }
+
+    .lightbox-footer {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      gap: 16px;
+    }
+
+    .lightbox-filename {
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+
+    .lightbox-counter {
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 12px;
+      border-radius: 12px;
+    }
+
+    .lightbox-open-btn {
+      color: #818cf8;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .lightbox-open-btn:hover {
+      background: var(--accent-color);
+      color: #fff;
+    }
+
+    /* Back to Top button */
+    .back-top-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      z-index: 90;
+    }
+
+    .back-top-btn.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .back-top-btn:hover {
+      transform: translateY(-3px) scale(1.08);
+      background: var(--accent-hover);
+    }
   </style>
+
 </head>
 
 <body>
+  <header class="header">
+    <div class="header-container">
+      <div class="logo-group">
+        <div class="logo-icon">🎬</div>
+        <div>
+          <h1 class="logo-title">Galeri 2</h1>
+          <p class="logo-subtitle">Güncel Medya ve Video Listesi</p>
+        </div>
+      </div>
+      <div class="nav-group">
+        <span class="total-badge" id="totalBadge">Medya</span>
+        <a href="index.html" class="nav-btn">Ana Sayfa</a>
+        <a href="index2.html" class="nav-btn active">Yeni Sayfa (Galeri 2)</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="gallery-grid">
+      <a class="gallery-card" href="261.mov" target="_blank">
+        <video preload="auto">
+          <source src="261.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="260.mov" target="_blank">
+        <video preload="auto">
+          <source src="260.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="259.GIF" target="_blank"><img src="259.GIF" alt="Resim 259"></a>
+      <a class="gallery-card" href="258.GIF" target="_blank"><img src="258.GIF" alt="Resim 258"></a>
+      <a class="gallery-card" href="257.GIF" target="_blank"><img src="257.GIF" alt="Resim 257"></a>
+      <a class="gallery-card" href="256.GIF" target="_blank"><img src="256.GIF" alt="Resim 256"></a>
+      <a class="gallery-card" href="255.GIF" target="_blank"><img src="255.GIF" alt="Resim 255"></a>
+      <a class="gallery-card" href="254.GIF" target="_blank"><img src="254.GIF" alt="Resim 254"></a>
+      <a class="gallery-card" href="253.GIF" target="_blank"><img src="253.GIF" alt="Resim 253"></a>
+      <a class="gallery-card" href="252.GIF" target="_blank"><img src="252.GIF" alt="Resim 252"></a>
+      <a class="gallery-card" href="251.MP4" target="_blank">
+        <video preload="auto">
+          <source src="251.MP4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="250.GIF" target="_blank"><img src="250.GIF" alt="Resim 250"></a>
+      <a class="gallery-card" href="249.GIF" target="_blank"><img src="249.GIF" alt="Resim 249"></a>
+      <a class="gallery-card" href="248.GIF" target="_blank"><img src="248.GIF" alt="Resim 248"></a>
+      <a class="gallery-card" href="247.GIF" target="_blank"><img src="247.GIF" alt="Resim 247"></a>
+      <a class="gallery-card" href="246.MP4" target="_blank">
+        <video preload="auto">
+          <source src="246.MP4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="245.GIF" target="_blank"><img src="245.GIF" alt="Resim 245"></a>
+      <a class="gallery-card" href="244.MP4" target="_blank">
+        <video preload="auto">
+          <source src="244.MP4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="243.MP4" target="_blank">
+        <video preload="auto">
+          <source src="243.MP4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="242.GIF" target="_blank"><img src="242.GIF" alt="Resim 242"></a>
+      <a class="gallery-card" href="241.GIF" target="_blank"><img src="241.GIF" alt="Resim 241"></a>
+      <a class="gallery-card" href="240.GIF" target="_blank"><img src="240.GIF" alt="Resim 240"></a>
+      <a class="gallery-card" href="239.MP4" target="_blank">
+        <video preload="auto">
+          <source src="239.MP4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="238.GIF" target="_blank"><img src="238.GIF" alt="Resim 238"></a>
+      <a class="gallery-card" href="237.MP4" target="_blank">
+        <video preload="auto">
+          <source src="237.MP4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="236.GIF" target="_blank"><img src="236.GIF" alt="Resim 236"></a>
+      <a class="gallery-card" href="235.GIF" target="_blank"><img src="235.GIF" alt="Resim 235"></a>
+      <a class="gallery-card" href="234.GIF" target="_blank"><img src="234.GIF" alt="Resim 234"></a>
+      <a class="gallery-card" href="233.GIF" target="_blank"><img src="233.GIF" alt="Resim 233"></a>
+      <a class="gallery-card" href="232.GIF" target="_blank"><img src="232.GIF" alt="Resim 232"></a>
+      <a class="gallery-card" href="231.GIF" target="_blank"><img src="231.GIF" alt="Resim 231"></a>
+      <a class="gallery-card" href="230.GIF" target="_blank"><img src="230.GIF" alt="Resim 230"></a>
+      <a class="gallery-card" href="229.GIF" target="_blank"><img src="229.GIF" alt="Resim 229"></a>
+      <a class="gallery-card" href="228.GIF" target="_blank"><img src="228.GIF" alt="Resim 228"></a>
+      <a class="gallery-card" href="227.GIF" target="_blank"><img src="227.GIF" alt="Resim 227"></a>
+      <a class="gallery-card" href="226.GIF" target="_blank"><img src="226.GIF" alt="Resim 226"></a>
+      <a class="gallery-card" href="225.GIF" target="_blank"><img src="225.GIF" alt="Resim 225"></a>
+      <a class="gallery-card" href="224.GIF" target="_blank"><img src="224.GIF" alt="Resim 224"></a>
+      <a class="gallery-card" href="223.GIF" target="_blank"><img src="223.GIF" alt="Resim 223"></a>
+      <a class="gallery-card" href="222.GIF" target="_blank"><img src="222.GIF" alt="Resim 222"></a>
+      <a class="gallery-card" href="221.GIF" target="_blank"><img src="221.GIF" alt="Resim 221"></a>
+      <a class="gallery-card" href="220.GIF" target="_blank"><img src="220.GIF" alt="Resim 220"></a>
+      <a class="gallery-card" href="219.GIF" target="_blank"><img src="219.GIF" alt="Resim 219"></a>
+      <a class="gallery-card" href="218.GIF" target="_blank"><img src="218.GIF" alt="Resim 218"></a>
+      <a class="gallery-card" href="217.GIF" target="_blank"><img src="217.GIF" alt="Resim 217"></a>
+      <a class="gallery-card" href="216.GIF" target="_blank"><img src="216.GIF" alt="Resim 216"></a>
+      <a class="gallery-card" href="215.GIF" target="_blank"><img src="215.GIF" alt="Resim 215"></a>
+      <a class="gallery-card" href="214.GIF" target="_blank"><img src="214.GIF" alt="Resim 214"></a>
+      <a class="gallery-card" href="213.GIF" target="_blank"><img src="213.GIF" alt="Resim 213"></a>
 
 
-<a href="209.mov" target="_blank">
-    <video preload="auto">
-      <source src="209.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>  
+
+      <a class="gallery-card" href="209.mov" target="_blank">
+        <video preload="auto">
+          <source src="209.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
 
-<a href="210.mov" target="_blank">
-    <video preload="auto">
-      <source src="210.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
+      <a class="gallery-card" href="210.mov" target="_blank">
+        <video preload="auto">
+          <source src="210.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
-  <a href="211.GIF" target="_blank"><img src="211.GIF" alt="Resim 211"></a>
-  <a href="212.GIF" target="_blank"><img src="212.GIF" alt="Resim 212"></a>
-
-  
-  
-<a href="193.mov" target="_blank">
-    <video preload="auto">
-      <source src="193.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>  
-  <a href="194.mov" target="_blank">
-    <video preload="auto">
-      <source src="194.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>  
-  <a href="195.mov" target="_blank">
-    <video preload="auto">
-      <source src="195.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>  
-  <a href="196.mov" target="_blank">
-    <video preload="auto">
-      <source src="196.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>  
-  <a href="197.mov" target="_blank">
-    <video preload="auto">
-      <source src="197.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>  
-  <a href="198.mov" target="_blank">
-    <video preload="auto">
-      <source src="198.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>  
-  <a href="199.mov" target="_blank">
-    <video preload="auto">
-      <source src="199.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
+      <a class="gallery-card" href="211.GIF" target="_blank"><img src="211.GIF" alt="Resim 211"></a>
+      <a class="gallery-card" href="212.GIF" target="_blank"><img src="212.GIF" alt="Resim 212"></a>
 
 
-  <a href="200.GIF" target="_blank"><img src="200.GIF" alt="Resim 200"></a>
-  <a href="201.GIF" target="_blank"><img src="201.GIF" alt="Resim 201"></a>
-  <a href="202.GIF" target="_blank"><img src="202.GIF" alt="Resim 202"></a>
-  <a href="203.GIF" target="_blank"><img src="203.GIF" alt="Resim 203"></a>
-  <a href="204.GIF" target="_blank"><img src="204.GIF" alt="Resim 204"></a>
-  <a href="205.GIF" target="_blank"><img src="205.GIF" alt="Resim 205"></a>
-  <a href="206.GIF" target="_blank"><img src="206.GIF" alt="Resim 206"></a>
-  <a href="207.GIF" target="_blank"><img src="207.GIF" alt="Resim 207"></a>
-  <a href="208.GIF" target="_blank"><img src="208.GIF" alt="Resim 208"></a>
-  
-  <a href="156.mp4" target="_blank">
-    <video preload="auto">
-      <source src="156.mp4#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
 
-    <a href="157.mp4" target="_blank">
-    <video preload="auto">
-      <source src="157.mp4#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
-
-
-    <a href="158.mp4" target="_blank">
-    <video preload="auto">
-      <source src="158.mp4#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
-
-
-    <a href="159.mp4" target="_blank">
-    <video preload="auto">
-      <source src="159.mp4#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
-
-
-    <a href="160.mp4" target="_blank">
-    <video preload="auto">
-      <source src="160.mp4#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
+      <a class="gallery-card" href="193.mov" target="_blank">
+        <video preload="auto">
+          <source src="193.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="194.mov" target="_blank">
+        <video preload="auto">
+          <source src="194.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="195.mov" target="_blank">
+        <video preload="auto">
+          <source src="195.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="196.mov" target="_blank">
+        <video preload="auto">
+          <source src="196.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="197.mov" target="_blank">
+        <video preload="auto">
+          <source src="197.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="198.mov" target="_blank">
+        <video preload="auto">
+          <source src="198.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="199.mov" target="_blank">
+        <video preload="auto">
+          <source src="199.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
 
-  <a href="161.mp4" target="_blank">
-    <video preload="auto">
-      <source src="161.mp4#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
+      <a class="gallery-card" href="200.GIF" target="_blank"><img src="200.GIF" alt="Resim 200"></a>
+      <a class="gallery-card" href="201.GIF" target="_blank"><img src="201.GIF" alt="Resim 201"></a>
+      <a class="gallery-card" href="202.GIF" target="_blank"><img src="202.GIF" alt="Resim 202"></a>
+      <a class="gallery-card" href="203.GIF" target="_blank"><img src="203.GIF" alt="Resim 203"></a>
+      <a class="gallery-card" href="204.GIF" target="_blank"><img src="204.GIF" alt="Resim 204"></a>
+      <a class="gallery-card" href="205.GIF" target="_blank"><img src="205.GIF" alt="Resim 205"></a>
+      <a class="gallery-card" href="206.GIF" target="_blank"><img src="206.GIF" alt="Resim 206"></a>
+      <a class="gallery-card" href="207.GIF" target="_blank"><img src="207.GIF" alt="Resim 207"></a>
+      <a class="gallery-card" href="208.GIF" target="_blank"><img src="208.GIF" alt="Resim 208"></a>
+
+      <a class="gallery-card" href="156.mp4" target="_blank">
+        <video preload="auto">
+          <source src="156.mp4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+
+      <a class="gallery-card" href="157.mp4" target="_blank">
+        <video preload="auto">
+          <source src="157.mp4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
 
-    <a href="162.mp4" target="_blank">
-    <video preload="auto">
-      <source src="162.mp4#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
-
-      <a href="163.MP4" target="_blank">
-    <video preload="auto">
-      <source src="163.MP4#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
+      <a class="gallery-card" href="158.mp4" target="_blank">
+        <video preload="auto">
+          <source src="158.mp4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
 
-    <a href="164.mov" target="_blank">
-    <video preload="auto">
-      <source src="164.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>  
+      <a class="gallery-card" href="159.mp4" target="_blank">
+        <video preload="auto">
+          <source src="159.mp4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
 
-    <a href="165.mov" target="_blank">
-    <video preload="auto">
-      <source src="165.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>  
-
-    <a href="166.mov" target="_blank">
-    <video preload="auto">
-      <source src="166.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>  
-
-    <a href="167.mov" target="_blank">
-    <video preload="auto">
-      <source src="167.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>  
+      <a class="gallery-card" href="160.mp4" target="_blank">
+        <video preload="auto">
+          <source src="160.mp4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
 
-    <a href="168.mov" target="_blank">
-    <video preload="auto">
-      <source src="168.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>  
+      <a class="gallery-card" href="161.mp4" target="_blank">
+        <video preload="auto">
+          <source src="161.mp4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
 
-    <a href="169.mov" target="_blank">
-    <video preload="auto">
-      <source src="169.mov#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>  
+      <a class="gallery-card" href="162.mp4" target="_blank">
+        <video preload="auto">
+          <source src="162.mp4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+
+      <a class="gallery-card" href="163.MP4" target="_blank">
+        <video preload="auto">
+          <source src="163.MP4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
 
-  <a href="170.GIF" target="_blank"><img src="170.GIF" alt="Resim 170"></a>
-  <a href="171.GIF" target="_blank"><img src="171.GIF" alt="Resim 171"></a>
-  <a href="172.GIF" target="_blank"><img src="172.GIF" alt="Resim 172"></a>
-  <a href="173.GIF" target="_blank"><img src="173.GIF" alt="Resim 173"></a>
-  <a href="174.GIF" target="_blank"><img src="174.GIF" alt="Resim 174"></a>
-  <a href="175.GIF" target="_blank"><img src="175.GIF" alt="Resim 175"></a>
-  <a href="176.GIF" target="_blank"><img src="176.GIF" alt="Resim 176"></a>
-  <a href="177.GIF" target="_blank"><img src="177.GIF" alt="Resim 177"></a>
-  <a href="178.GIF" target="_blank"><img src="178.GIF" alt="Resim 178"></a>
-  <a href="179.GIF" target="_blank"><img src="179.GIF" alt="Resim 179"></a>
-  <a href="180.GIF" target="_blank"><img src="180.GIF" alt="Resim 180"></a>
-  <a href="181.GIF" target="_blank"><img src="181.GIF" alt="Resim 181"></a>
-  <a href="182.GIF" target="_blank"><img src="182.GIF" alt="Resim 182"></a>
-  <a href="183.GIF" target="_blank"><img src="183.GIF" alt="Resim 183"></a>
-  <a href="184.GIF" target="_blank"><img src="184.GIF" alt="Resim 184"></a>
-  <a href="185.GIF" target="_blank"><img src="185.GIF" alt="Resim 185"></a>
-  <a href="186.GIF" target="_blank"><img src="186.GIF" alt="Resim 186"></a>
-  <a href="187.GIF" target="_blank"><img src="187.GIF" alt="Resim 187"></a>
-  <a href="188.GIF" target="_blank"><img src="188.GIF" alt="Resim 188"></a>
-  <a href="189.GIF" target="_blank"><img src="189.GIF" alt="Resim 189"></a>
-  <a href="190.GIF" target="_blank"><img src="190.GIF" alt="Resim 190"></a>
-  <a href="191.GIF" target="_blank"><img src="191.GIF" alt="Resim 191"></a>
-  <a href="192.GIF" target="_blank"><img src="192.GIF" alt="Resim 192"></a>
-  
-  
+      <a class="gallery-card" href="164.mov" target="_blank">
+        <video preload="auto">
+          <source src="164.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
-  
-  <a href="151.MP4" target="_blank">
-    <video preload="auto">
-      <source src="151.MP4#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
-  <a href="152.GIF" target="_blank"><img src="152.GIF" alt="Resim 152"></a>
-  <a href="153.GIF" target="_blank"><img src="153.GIF" alt="Resim 153"></a>
-  <a href="154.GIF" target="_blank"><img src="154.GIF" alt="Resim 154"></a>
-  <a href="155.GIF" target="_blank"><img src="155.GIF" alt="Resim 155"></a>
 
-  <a href="145.mp4" target="_blank">
-    <video preload="auto">
-      <source src="145.mp4#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
-  <a href="146.GIF" target="_blank"><img src="146.GIF" alt="Resim 146"></a>
+      <a class="gallery-card" href="165.mov" target="_blank">
+        <video preload="auto">
+          <source src="165.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
-  <a href="144.MP4" target="_blank">
-    <video preload="auto">
-      <source src="144.MP4#t=6.6" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
+      <a class="gallery-card" href="166.mov" target="_blank">
+        <video preload="auto">
+          <source src="166.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
-  <a href="137.GIF" target="_blank"><img src="137.GIF" alt="Resim 137"></a>
-  <a href="138.GIF" target="_blank"><img src="138.GIF" alt="Resim 138"></a>
-  <a href="139.jpg" target="_blank"><img src="139.jpg" alt="Resim 139"></a>
-  <a href="140.jpg" target="_blank"><img src="140.jpg" alt="Resim 140"></a>
-  <a href="141.JPG" target="_blank"><img src="141.JPG" alt="Resim 141"></a>
+      <a class="gallery-card" href="167.mov" target="_blank">
+        <video preload="auto">
+          <source src="167.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
-  <a href="147.MP4" target="_blank">
-    <video preload="auto">
-      <source src="147.MP4#t=232.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
 
-  <a href="148.MP4" target="_blank">
-    <video preload="auto">
-      <source src="148.MP4#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
+      <a class="gallery-card" href="168.mov" target="_blank">
+        <video preload="auto">
+          <source src="168.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
-  <a href="149.mp4" target="_blank">
-    <video preload="auto">
-      <source src="149.mp4#t=304" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
 
-  <a href="150.MP4" target="_blank">
-    <video preload="auto">
-      <source src="150.MP4#t=96" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
+      <a class="gallery-card" href="169.mov" target="_blank">
+        <video preload="auto">
+          <source src="169.mov#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
 
-  <a href="106.MP4" target="_blank">
-    <video preload="auto">
-      <source src="106.MP4#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
-  <a href="110.MP4" target="_blank">
-    <video preload="auto">
-      <source src="110.MP4#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
-  <a href="114.MP4" target="_blank">
-    <video preload="auto">
-      <source src="114.MP4#t=0.5" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </a>
-  <a href="107.GIF" target="_blank"><img src="107.GIF" alt="Resim 107"></a>
-  <a href="108.GIF" target="_blank"><img src="108.GIF" alt="Resim 108"></a>
-  <a href="109.GIF" target="_blank"><img src="109.GIF" alt="Resim 109"></a>
 
-  <a href="111.GIF" target="_blank"><img src="111.GIF" alt="Resim 111"></a>
-  <a href="112.GIF" target="_blank"><img src="112.GIF" alt="Resim 112"></a>
-  <a href="113.GIF" target="_blank"><img src="113.GIF" alt="Resim 113"></a>
-  <a href="115.GIF" target="_blank"><img src="115.GIF" alt="Resim 115"></a>
-  <a href="116.GIF" target="_blank"><img src="116.GIF" alt="Resim 116"></a>
-
-  <a href="118.GIF" target="_blank"><img src="118.GIF" alt="Resim 118"></a>
-  <a href="119.GIF" target="_blank"><img src="119.GIF" alt="Resim 119"></a>
-  <a href="120.GIF" target="_blank"><img src="120.GIF" alt="Resim 120"></a>
-  <a href="121.GIF" target="_blank"><img src="121.GIF" alt="Resim 121"></a>
-  <a href="122.GIF" target="_blank"><img src="122.GIF" alt="Resim 122"></a>
-  <a href="123.GIF" target="_blank"><img src="123.GIF" alt="Resim 123"></a>
-  <a href="124.GIF" target="_blank"><img src="124.GIF" alt="Resim 124"></a>
-  <a href="125.GIF" target="_blank"><img src="125.GIF" alt="Resim 125"></a>
-  <a href="126.GIF" target="_blank"><img src="126.GIF" alt="Resim 126"></a>
-  <a href="127.GIF" target="_blank"><img src="127.GIF" alt="Resim 127"></a>
-  <a href="128.GIF" target="_blank"><img src="128.GIF" alt="Resim 128"></a>
-  <a href="129.GIF" target="_blank"><img src="129.GIF" alt="Resim 129"></a>
-  <a href="130.GIF" target="_blank"><img src="130.GIF" alt="Resim 130"></a>
-  <a href="131.GIF" target="_blank"><img src="131.GIF" alt="Resim 131"></a>
-  <a href="132.GIF" target="_blank"><img src="132.GIF" alt="Resim 132"></a>
-  <a href="133.GIF" target="_blank"><img src="133.GIF" alt="Resim 133"></a>
-  <a href="134.GIF" target="_blank"><img src="134.GIF" alt="Resim 134"></a>
-  <a href="135.GIF" target="_blank"><img src="135.GIF" alt="Resim 135"></a>
-  <a href="136.GIF" target="_blank"><img src="136.GIF" alt="Resim 136"></a>
-
-  <a href="142.GIF" target="_blank"><img src="142.GIF" alt="Resim 142"></a>
-  <a href="143.GIF" target="_blank"><img src="143.GIF" alt="Resim 143"></a>
+      <a class="gallery-card" href="170.GIF" target="_blank"><img src="170.GIF" alt="Resim 170"></a>
+      <a class="gallery-card" href="171.GIF" target="_blank"><img src="171.GIF" alt="Resim 171"></a>
+      <a class="gallery-card" href="172.GIF" target="_blank"><img src="172.GIF" alt="Resim 172"></a>
+      <a class="gallery-card" href="173.GIF" target="_blank"><img src="173.GIF" alt="Resim 173"></a>
+      <a class="gallery-card" href="174.GIF" target="_blank"><img src="174.GIF" alt="Resim 174"></a>
+      <a class="gallery-card" href="175.GIF" target="_blank"><img src="175.GIF" alt="Resim 175"></a>
+      <a class="gallery-card" href="176.GIF" target="_blank"><img src="176.GIF" alt="Resim 176"></a>
+      <a class="gallery-card" href="177.GIF" target="_blank"><img src="177.GIF" alt="Resim 177"></a>
+      <a class="gallery-card" href="178.GIF" target="_blank"><img src="178.GIF" alt="Resim 178"></a>
+      <a class="gallery-card" href="179.GIF" target="_blank"><img src="179.GIF" alt="Resim 179"></a>
+      <a class="gallery-card" href="180.GIF" target="_blank"><img src="180.GIF" alt="Resim 180"></a>
+      <a class="gallery-card" href="181.GIF" target="_blank"><img src="181.GIF" alt="Resim 181"></a>
+      <a class="gallery-card" href="182.GIF" target="_blank"><img src="182.GIF" alt="Resim 182"></a>
+      <a class="gallery-card" href="183.GIF" target="_blank"><img src="183.GIF" alt="Resim 183"></a>
+      <a class="gallery-card" href="184.GIF" target="_blank"><img src="184.GIF" alt="Resim 184"></a>
+      <a class="gallery-card" href="185.GIF" target="_blank"><img src="185.GIF" alt="Resim 185"></a>
+      <a class="gallery-card" href="186.GIF" target="_blank"><img src="186.GIF" alt="Resim 186"></a>
+      <a class="gallery-card" href="187.GIF" target="_blank"><img src="187.GIF" alt="Resim 187"></a>
+      <a class="gallery-card" href="188.GIF" target="_blank"><img src="188.GIF" alt="Resim 188"></a>
+      <a class="gallery-card" href="189.GIF" target="_blank"><img src="189.GIF" alt="Resim 189"></a>
+      <a class="gallery-card" href="190.GIF" target="_blank"><img src="190.GIF" alt="Resim 190"></a>
+      <a class="gallery-card" href="191.GIF" target="_blank"><img src="191.GIF" alt="Resim 191"></a>
+      <a class="gallery-card" href="192.GIF" target="_blank"><img src="192.GIF" alt="Resim 192"></a>
 
 
 
 
+      <a class="gallery-card" href="151.MP4" target="_blank">
+        <video preload="auto">
+          <source src="151.MP4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="152.GIF" target="_blank"><img src="152.GIF" alt="Resim 152"></a>
+      <a class="gallery-card" href="153.GIF" target="_blank"><img src="153.GIF" alt="Resim 153"></a>
+      <a class="gallery-card" href="154.GIF" target="_blank"><img src="154.GIF" alt="Resim 154"></a>
+      <a class="gallery-card" href="155.GIF" target="_blank"><img src="155.GIF" alt="Resim 155"></a>
+
+      <a class="gallery-card" href="145.mp4" target="_blank">
+        <video preload="auto">
+          <source src="145.mp4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="146.GIF" target="_blank"><img src="146.GIF" alt="Resim 146"></a>
+
+      <a class="gallery-card" href="144.MP4" target="_blank">
+        <video preload="auto">
+          <source src="144.MP4#t=6.6" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+
+      <a class="gallery-card" href="137.GIF" target="_blank"><img src="137.GIF" alt="Resim 137"></a>
+      <a class="gallery-card" href="138.GIF" target="_blank"><img src="138.GIF" alt="Resim 138"></a>
+      <a class="gallery-card" href="139.jpg" target="_blank"><img src="139.jpg" alt="Resim 139"></a>
+      <a class="gallery-card" href="140.jpg" target="_blank"><img src="140.jpg" alt="Resim 140"></a>
+      <a class="gallery-card" href="141.JPG" target="_blank"><img src="141.JPG" alt="Resim 141"></a>
+
+      <a class="gallery-card" href="147.MP4" target="_blank">
+        <video preload="auto">
+          <source src="147.MP4#t=232.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+
+      <a class="gallery-card" href="148.MP4" target="_blank">
+        <video preload="auto">
+          <source src="148.MP4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+
+      <a class="gallery-card" href="149.mp4" target="_blank">
+        <video preload="auto">
+          <source src="149.mp4#t=304" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+
+      <a class="gallery-card" href="150.MP4" target="_blank">
+        <video preload="auto">
+          <source src="150.MP4#t=96" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+
+      <a class="gallery-card" href="106.MP4" target="_blank">
+        <video preload="auto">
+          <source src="106.MP4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="110.MP4" target="_blank">
+        <video preload="auto">
+          <source src="110.MP4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="114.MP4" target="_blank">
+        <video preload="auto">
+          <source src="114.MP4#t=0.5" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </a>
+      <a class="gallery-card" href="107.GIF" target="_blank"><img src="107.GIF" alt="Resim 107"></a>
+      <a class="gallery-card" href="108.GIF" target="_blank"><img src="108.GIF" alt="Resim 108"></a>
+      <a class="gallery-card" href="109.GIF" target="_blank"><img src="109.GIF" alt="Resim 109"></a>
+
+      <a class="gallery-card" href="111.GIF" target="_blank"><img src="111.GIF" alt="Resim 111"></a>
+      <a class="gallery-card" href="112.GIF" target="_blank"><img src="112.GIF" alt="Resim 112"></a>
+      <a class="gallery-card" href="113.GIF" target="_blank"><img src="113.GIF" alt="Resim 113"></a>
+      <a class="gallery-card" href="115.GIF" target="_blank"><img src="115.GIF" alt="Resim 115"></a>
+      <a class="gallery-card" href="116.GIF" target="_blank"><img src="116.GIF" alt="Resim 116"></a>
+
+      <a class="gallery-card" href="118.GIF" target="_blank"><img src="118.GIF" alt="Resim 118"></a>
+      <a class="gallery-card" href="119.GIF" target="_blank"><img src="119.GIF" alt="Resim 119"></a>
+      <a class="gallery-card" href="120.GIF" target="_blank"><img src="120.GIF" alt="Resim 120"></a>
+      <a class="gallery-card" href="121.GIF" target="_blank"><img src="121.GIF" alt="Resim 121"></a>
+      <a class="gallery-card" href="122.GIF" target="_blank"><img src="122.GIF" alt="Resim 122"></a>
+      <a class="gallery-card" href="123.GIF" target="_blank"><img src="123.GIF" alt="Resim 123"></a>
+      <a class="gallery-card" href="124.GIF" target="_blank"><img src="124.GIF" alt="Resim 124"></a>
+      <a class="gallery-card" href="125.GIF" target="_blank"><img src="125.GIF" alt="Resim 125"></a>
+      <a class="gallery-card" href="126.GIF" target="_blank"><img src="126.GIF" alt="Resim 126"></a>
+      <a class="gallery-card" href="127.GIF" target="_blank"><img src="127.GIF" alt="Resim 127"></a>
+      <a class="gallery-card" href="128.GIF" target="_blank"><img src="128.GIF" alt="Resim 128"></a>
+      <a class="gallery-card" href="129.GIF" target="_blank"><img src="129.GIF" alt="Resim 129"></a>
+      <a class="gallery-card" href="130.GIF" target="_blank"><img src="130.GIF" alt="Resim 130"></a>
+      <a class="gallery-card" href="131.GIF" target="_blank"><img src="131.GIF" alt="Resim 131"></a>
+      <a class="gallery-card" href="132.GIF" target="_blank"><img src="132.GIF" alt="Resim 132"></a>
+      <a class="gallery-card" href="133.GIF" target="_blank"><img src="133.GIF" alt="Resim 133"></a>
+      <a class="gallery-card" href="134.GIF" target="_blank"><img src="134.GIF" alt="Resim 134"></a>
+      <a class="gallery-card" href="135.GIF" target="_blank"><img src="135.GIF" alt="Resim 135"></a>
+      <a class="gallery-card" href="136.GIF" target="_blank"><img src="136.GIF" alt="Resim 136"></a>
+
+      <a class="gallery-card" href="142.GIF" target="_blank"><img src="142.GIF" alt="Resim 142"></a>
+      <a class="gallery-card" href="143.GIF" target="_blank"><img src="143.GIF" alt="Resim 143"></a>
+
+
+
+
+
+
+    </div>
+  </main>
+
+
+  <!-- Lightbox Modal DOM -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-controls">
+      <button class="lightbox-btn" id="lightboxCloseBtn" title="Kapat (Esc)">✕</button>
+    </div>
+    <button class="lightbox-nav-btn lightbox-nav-prev" id="lightboxPrevBtn" title="Önceki (Sol Ok)">❮</button>
+    <button class="lightbox-nav-btn lightbox-nav-next" id="lightboxNextBtn" title="Sonraki (Sağ Ok)">❯</button>
+
+    <div class="lightbox-content-wrapper">
+      <div class="lightbox-media-container" id="lightboxMediaContainer"></div>
+      <div class="lightbox-footer">
+        <span class="lightbox-filename" id="lightboxFilename"></span>
+        <span class="lightbox-counter" id="lightboxCounter"></span>
+        <a href="#" target="_blank" class="lightbox-open-btn" id="lightboxOpenBtn">
+          ↗ Sekmede Aç
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <button class="back-top-btn" id="backTopBtn" title="Yukarı Çık">▲</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = Array.from(document.querySelectorAll('.gallery-card'));
+      const lightbox = document.getElementById('lightbox');
+      const lightboxMediaContainer = document.getElementById('lightboxMediaContainer');
+      const lightboxFilename = document.getElementById('lightboxFilename');
+      const lightboxCounter = document.getElementById('lightboxCounter');
+      const lightboxOpenBtn = document.getElementById('lightboxOpenBtn');
+      const closeBtn = document.getElementById('lightboxCloseBtn');
+      const prevBtn = document.getElementById('lightboxPrevBtn');
+      const nextBtn = document.getElementById('lightboxNextBtn');
+      const backTopBtn = document.getElementById('backTopBtn');
+
+      let currentIndex = 0;
+      const mediaItems = [];
+
+      cards.forEach((card) => {
+        const href = card.getAttribute('href');
+        if (!href) return;
+
+        const isVideo = href.match(/\.(mp4|MP4|mov|MOV)($|\?|#)/i);
+        const isImage = href.match(/\.(gif|GIF|jpg|JPG|png|PNG|jpeg|JPEG|webp)($|\?|#)/i);
+
+        if (isVideo || isImage) {
+          card.classList.add('lightbox-trigger');
+          if (isVideo) card.classList.add('is-video');
+
+          // Add media format badge if not present
+          if (!card.querySelector('.media-badge')) {
+            const ext = href.split('.').pop().split('#')[0].split('?')[0].toUpperCase();
+            const badge = document.createElement('span');
+            badge.className = 'media-badge';
+            badge.textContent = ext;
+            card.appendChild(badge);
+          }
+
+          const itemIndex = mediaItems.length;
+          mediaItems.push({
+            url: href,
+            type: isVideo ? 'video' : 'image',
+            filename: href,
+            card: card
+          });
+
+          card.addEventListener('click', (e) => {
+            e.preventDefault();
+            openLightbox(itemIndex);
+          });
+        }
+      });
+
+      // Update total badge count
+      const totalBadge = document.getElementById('totalBadge');
+      if (totalBadge) {
+        totalBadge.textContent = `${mediaItems.length} Medya`;
+      }
+
+      function openLightbox(index) {
+        if (index < 0 || index >= mediaItems.length) return;
+        currentIndex = index;
+        const item = mediaItems[currentIndex];
+
+        lightboxMediaContainer.innerHTML = '';
+        if (item.type === 'video') {
+          const videoEl = document.createElement('video');
+          videoEl.src = item.url;
+          videoEl.controls = true;
+          videoEl.autoplay = true;
+          videoEl.loop = true;
+          videoEl.setAttribute('playsinline', '');
+          lightboxMediaContainer.appendChild(videoEl);
+        } else {
+          const imgEl = document.createElement('img');
+          imgEl.src = item.url;
+          imgEl.alt = item.filename;
+          lightboxMediaContainer.appendChild(imgEl);
+        }
+
+        lightboxFilename.textContent = item.filename;
+        lightboxCounter.textContent = `${currentIndex + 1} / ${mediaItems.length}`;
+        lightboxOpenBtn.href = item.url;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        lightboxMediaContainer.innerHTML = '';
+      }
+
+      function showNext() {
+        openLightbox((currentIndex + 1) % mediaItems.length);
+      }
+
+      function showPrev() {
+        openLightbox((currentIndex - 1 + mediaItems.length) % mediaItems.length);
+      }
+
+      if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+      if (nextBtn) nextBtn.addEventListener('click', showNext);
+      if (prevBtn) prevBtn.addEventListener('click', showPrev);
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') showNext();
+        if (e.key === 'ArrowLeft') showPrev();
+      });
+
+      // Back to top scrolling
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          backTopBtn.classList.add('visible');
+        } else {
+          backTopBtn.classList.remove('visible');
+        }
+      });
+
+      backTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
 
 </body>
 
