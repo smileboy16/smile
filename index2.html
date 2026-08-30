@@ -131,6 +131,26 @@
       border: 1px solid rgba(99, 102, 241, 0.3);
     }
 
+    .search-wrap { flex: 1; min-width: 140px; max-width: 320px; }
+    .search-input {
+      width: 100%;
+      padding: 9px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .search-input::placeholder { color: var(--text-muted); }
+    .search-input:focus {
+      border-color: rgba(99, 102, 241, 0.55);
+      background: rgba(255, 255, 255, 0.08);
+    }
+    .gallery-card.is-hidden { display: none !important; }
+
     .container {
       max-width: 1600px;
       margin: 24px auto;
@@ -167,6 +187,9 @@
       .logo-subtitle {
         display: none;
       }
+
+      .search-wrap { max-width: none; flex: 1 1 100%; order: 3; }
+      .header-container { gap: 10px; }
     }
 
     .gallery-card {
@@ -506,6 +529,9 @@
         </div>
       </div>
       <div class="nav-group">
+        <div class="search-wrap">
+          <input type="search" class="search-input" id="searchInput" placeholder="Ara..." autocomplete="off"/>
+        </div>
         <span class="total-badge" id="totalBadge">Medya</span>
         <a href="index.html" class="nav-btn">Ana Sayfa</a>
         <a href="index2.html" class="nav-btn active">Yeni Sayfa (Galeri 2)</a>
@@ -814,6 +840,21 @@
 
       const totalBadge = document.getElementById('totalBadge');
       if (totalBadge) totalBadge.textContent = `${mediaItems.length} Medya`;
+
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) {
+        searchInput.addEventListener('input', () => {
+          const q = searchInput.value.trim().toLowerCase();
+          let visible = 0;
+          cards.forEach(card => {
+            const href = (card.getAttribute('href') || '') + ' ' + (card.textContent || '');
+            const match = !q || href.toLowerCase().includes(q);
+            card.classList.toggle('is-hidden', !match);
+            if (match) visible++;
+          });
+          if (totalBadge) totalBadge.textContent = q ? `${visible} / ${cards.length}` : `${mediaItems.length} Medya`;
+        });
+      }
 
       function openLightbox(index) {
         if (index < 0 || index >= mediaItems.length) return;
