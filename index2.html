@@ -38,7 +38,6 @@
       padding-bottom: 60px;
     }
 
-    /* Header & Sticky Navigation */
     .header {
       position: sticky;
       top: 0;
@@ -132,17 +131,12 @@
       border: 1px solid rgba(99, 102, 241, 0.3);
     }
 
-    /* Main Grid Layout */
     .container {
       max-width: 1600px;
       margin: 24px auto;
       padding: 0 20px;
     }
 
-    /* Requirement:
-       Masaüstünde 5'er sıra (Desktop: 5 columns)
-       Mobil sürümde 2'şer sıra (Mobile: 2 columns)
-    */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -175,7 +169,6 @@
       }
     }
 
-    /* Card Item Styling */
     .gallery-card {
       position: relative;
       background: var(--card-bg);
@@ -225,7 +218,6 @@
       height: 48px;
       background: rgba(15, 23, 42, 0.75);
       backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
       border-radius: 50%;
       color: #ffffff;
       display: flex;
@@ -236,7 +228,6 @@
       border: 1px solid rgba(255, 255, 255, 0.25);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
       transition: all 0.3s ease;
-      pointer-events: none;
     }
 
     .gallery-card.is-video:hover::after {
@@ -257,12 +248,9 @@
       padding: 3px 7px;
       border-radius: 6px;
       border: 1px solid rgba(255, 255, 255, 0.12);
-      pointer-events: none;
-      letter-spacing: 0.05em;
       z-index: 1;
     }
 
-    /* External Links & Iframes */
     .external-card {
       background: linear-gradient(145deg, #1e1b4b, #2e1065);
       display: flex;
@@ -292,23 +280,11 @@
       word-break: break-word;
     }
 
-    .iframe-card {
-      overflow: hidden;
-    }
-
-    .iframe-card iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    /* Lightbox Modal */
     .lightbox {
       position: fixed;
       inset: 0;
       background: rgba(5, 8, 15, 0.94);
       backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
       z-index: 1000;
       opacity: 0;
       pointer-events: none;
@@ -361,7 +337,6 @@
       top: 20px;
       right: 20px;
       display: flex;
-      align-items: center;
       gap: 12px;
       z-index: 1010;
     }
@@ -421,18 +396,20 @@
     }
 
     @media (max-width: 640px) {
-      .lightbox-nav-prev {
-        left: 10px;
+
+      .lightbox-nav-prev,
+      .lightbox-nav-next {
         width: 42px;
         height: 42px;
         font-size: 18px;
       }
 
+      .lightbox-nav-prev {
+        left: 10px;
+      }
+
       .lightbox-nav-next {
         right: 10px;
-        width: 42px;
-        height: 42px;
-        font-size: 18px;
       }
 
       .lightbox-controls {
@@ -484,7 +461,6 @@
       color: #fff;
     }
 
-    /* Back to Top button */
     .back-top-btn {
       position: fixed;
       bottom: 24px;
@@ -517,7 +493,6 @@
       background: var(--accent-hover);
     }
   </style>
-
 </head>
 
 <body>
@@ -534,24 +509,19 @@
         <span class="total-badge" id="totalBadge">Medya</span>
         <a href="index.html" class="nav-btn">Ana Sayfa</a>
         <a href="index2.html" class="nav-btn active">Yeni Sayfa (Galeri 2)</a>
+        <a href="keep.html" class="nav-btn">Keep</a>
       </div>
     </div>
   </header>
 
   <main class="container">
     <div class="gallery-grid">
-      <a class="gallery-card" href="261.mov" target="_blank">
-        <video preload="auto">
+      <a class="gallery-card" href="261.mov" target="_blank"><video preload="auto">
           <source src="261.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-      <a class="gallery-card" href="260.mov" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="260.mov" target="_blank"><video preload="auto">
           <source src="260.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
+        </video></a>
       <a class="gallery-card" href="259.GIF" target="_blank"><img src="259.GIF" alt="Resim 259"></a>
       <a class="gallery-card" href="258.GIF" target="_blank"><img src="258.GIF" alt="Resim 258"></a>
       <a class="gallery-card" href="257.GIF" target="_blank"><img src="257.GIF" alt="Resim 257"></a>
@@ -560,51 +530,33 @@
       <a class="gallery-card" href="254.GIF" target="_blank"><img src="254.GIF" alt="Resim 254"></a>
       <a class="gallery-card" href="253.GIF" target="_blank"><img src="253.GIF" alt="Resim 253"></a>
       <a class="gallery-card" href="252.GIF" target="_blank"><img src="252.GIF" alt="Resim 252"></a>
-      <a class="gallery-card" href="251.MP4" target="_blank">
-        <video preload="auto">
+      <a class="gallery-card" href="251.MP4" target="_blank"><video preload="auto">
           <source src="251.MP4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
+        </video></a>
       <a class="gallery-card" href="250.GIF" target="_blank"><img src="250.GIF" alt="Resim 250"></a>
       <a class="gallery-card" href="249.GIF" target="_blank"><img src="249.GIF" alt="Resim 249"></a>
       <a class="gallery-card" href="248.GIF" target="_blank"><img src="248.GIF" alt="Resim 248"></a>
       <a class="gallery-card" href="247.GIF" target="_blank"><img src="247.GIF" alt="Resim 247"></a>
-      <a class="gallery-card" href="246.MP4" target="_blank">
-        <video preload="auto">
+      <a class="gallery-card" href="246.MP4" target="_blank"><video preload="auto">
           <source src="246.MP4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
+        </video></a>
       <a class="gallery-card" href="245.GIF" target="_blank"><img src="245.GIF" alt="Resim 245"></a>
-      <a class="gallery-card" href="244.MP4" target="_blank">
-        <video preload="auto">
+      <a class="gallery-card" href="244.MP4" target="_blank"><video preload="auto">
           <source src="244.MP4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-      <a class="gallery-card" href="243.MP4" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="243.MP4" target="_blank"><video preload="auto">
           <source src="243.MP4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
+        </video></a>
       <a class="gallery-card" href="242.GIF" target="_blank"><img src="242.GIF" alt="Resim 242"></a>
       <a class="gallery-card" href="241.GIF" target="_blank"><img src="241.GIF" alt="Resim 241"></a>
       <a class="gallery-card" href="240.GIF" target="_blank"><img src="240.GIF" alt="Resim 240"></a>
-      <a class="gallery-card" href="239.MP4" target="_blank">
-        <video preload="auto">
+      <a class="gallery-card" href="239.MP4" target="_blank"><video preload="auto">
           <source src="239.MP4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
+        </video></a>
       <a class="gallery-card" href="238.GIF" target="_blank"><img src="238.GIF" alt="Resim 238"></a>
-      <a class="gallery-card" href="237.MP4" target="_blank">
-        <video preload="auto">
+      <a class="gallery-card" href="237.MP4" target="_blank"><video preload="auto">
           <source src="237.MP4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
+        </video></a>
       <a class="gallery-card" href="236.GIF" target="_blank"><img src="236.GIF" alt="Resim 236"></a>
       <a class="gallery-card" href="235.GIF" target="_blank"><img src="235.GIF" alt="Resim 235"></a>
       <a class="gallery-card" href="234.GIF" target="_blank"><img src="234.GIF" alt="Resim 234"></a>
@@ -629,73 +581,35 @@
       <a class="gallery-card" href="215.GIF" target="_blank"><img src="215.GIF" alt="Resim 215"></a>
       <a class="gallery-card" href="214.GIF" target="_blank"><img src="214.GIF" alt="Resim 214"></a>
       <a class="gallery-card" href="213.GIF" target="_blank"><img src="213.GIF" alt="Resim 213"></a>
-
-
-
-      <a class="gallery-card" href="209.mov" target="_blank">
-        <video preload="auto">
+      <a class="gallery-card" href="209.mov" target="_blank"><video preload="auto">
           <source src="209.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-
-      <a class="gallery-card" href="210.mov" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="210.mov" target="_blank"><video preload="auto">
           <source src="210.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
+        </video></a>
       <a class="gallery-card" href="211.GIF" target="_blank"><img src="211.GIF" alt="Resim 211"></a>
       <a class="gallery-card" href="212.GIF" target="_blank"><img src="212.GIF" alt="Resim 212"></a>
-
-
-
-      <a class="gallery-card" href="193.mov" target="_blank">
-        <video preload="auto">
+      <a class="gallery-card" href="193.mov" target="_blank"><video preload="auto">
           <source src="193.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-      <a class="gallery-card" href="194.mov" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="194.mov" target="_blank"><video preload="auto">
           <source src="194.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-      <a class="gallery-card" href="195.mov" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="195.mov" target="_blank"><video preload="auto">
           <source src="195.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-      <a class="gallery-card" href="196.mov" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="196.mov" target="_blank"><video preload="auto">
           <source src="196.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-      <a class="gallery-card" href="197.mov" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="197.mov" target="_blank"><video preload="auto">
           <source src="197.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-      <a class="gallery-card" href="198.mov" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="198.mov" target="_blank"><video preload="auto">
           <source src="198.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-      <a class="gallery-card" href="199.mov" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="199.mov" target="_blank"><video preload="auto">
           <source src="199.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-
+        </video></a>
       <a class="gallery-card" href="200.GIF" target="_blank"><img src="200.GIF" alt="Resim 200"></a>
       <a class="gallery-card" href="201.GIF" target="_blank"><img src="201.GIF" alt="Resim 201"></a>
       <a class="gallery-card" href="202.GIF" target="_blank"><img src="202.GIF" alt="Resim 202"></a>
@@ -705,115 +619,48 @@
       <a class="gallery-card" href="206.GIF" target="_blank"><img src="206.GIF" alt="Resim 206"></a>
       <a class="gallery-card" href="207.GIF" target="_blank"><img src="207.GIF" alt="Resim 207"></a>
       <a class="gallery-card" href="208.GIF" target="_blank"><img src="208.GIF" alt="Resim 208"></a>
-
-      <a class="gallery-card" href="156.mp4" target="_blank">
-        <video preload="auto">
+      <a class="gallery-card" href="156.mp4" target="_blank"><video preload="auto">
           <source src="156.mp4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-      <a class="gallery-card" href="157.mp4" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="157.mp4" target="_blank"><video preload="auto">
           <source src="157.mp4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-
-      <a class="gallery-card" href="158.mp4" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="158.mp4" target="_blank"><video preload="auto">
           <source src="158.mp4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-
-      <a class="gallery-card" href="159.mp4" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="159.mp4" target="_blank"><video preload="auto">
           <source src="159.mp4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-
-      <a class="gallery-card" href="160.mp4" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="160.mp4" target="_blank"><video preload="auto">
           <source src="160.mp4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-
-      <a class="gallery-card" href="161.mp4" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="161.mp4" target="_blank"><video preload="auto">
           <source src="161.mp4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-
-      <a class="gallery-card" href="162.mp4" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="162.mp4" target="_blank"><video preload="auto">
           <source src="162.mp4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-      <a class="gallery-card" href="163.MP4" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="163.MP4" target="_blank"><video preload="auto">
           <source src="163.MP4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-
-      <a class="gallery-card" href="164.mov" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="164.mov" target="_blank"><video preload="auto">
           <source src="164.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-
-      <a class="gallery-card" href="165.mov" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="165.mov" target="_blank"><video preload="auto">
           <source src="165.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-      <a class="gallery-card" href="166.mov" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="166.mov" target="_blank"><video preload="auto">
           <source src="166.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-      <a class="gallery-card" href="167.mov" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="167.mov" target="_blank"><video preload="auto">
           <source src="167.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-
-      <a class="gallery-card" href="168.mov" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="168.mov" target="_blank"><video preload="auto">
           <source src="168.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-
-      <a class="gallery-card" href="169.mov" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="169.mov" target="_blank"><video preload="auto">
           <source src="169.mov#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-
+        </video></a>
       <a class="gallery-card" href="170.GIF" target="_blank"><img src="170.GIF" alt="Resim 170"></a>
       <a class="gallery-card" href="171.GIF" target="_blank"><img src="171.GIF" alt="Resim 171"></a>
       <a class="gallery-card" href="172.GIF" target="_blank"><img src="172.GIF" alt="Resim 172"></a>
@@ -837,98 +684,54 @@
       <a class="gallery-card" href="190.GIF" target="_blank"><img src="190.GIF" alt="Resim 190"></a>
       <a class="gallery-card" href="191.GIF" target="_blank"><img src="191.GIF" alt="Resim 191"></a>
       <a class="gallery-card" href="192.GIF" target="_blank"><img src="192.GIF" alt="Resim 192"></a>
-
-
-
-
-      <a class="gallery-card" href="151.MP4" target="_blank">
-        <video preload="auto">
+      <a class="gallery-card" href="151.MP4" target="_blank"><video preload="auto">
           <source src="151.MP4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
+        </video></a>
       <a class="gallery-card" href="152.GIF" target="_blank"><img src="152.GIF" alt="Resim 152"></a>
       <a class="gallery-card" href="153.GIF" target="_blank"><img src="153.GIF" alt="Resim 153"></a>
       <a class="gallery-card" href="154.GIF" target="_blank"><img src="154.GIF" alt="Resim 154"></a>
       <a class="gallery-card" href="155.GIF" target="_blank"><img src="155.GIF" alt="Resim 155"></a>
-
-      <a class="gallery-card" href="145.mp4" target="_blank">
-        <video preload="auto">
+      <a class="gallery-card" href="145.mp4" target="_blank"><video preload="auto">
           <source src="145.mp4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
+        </video></a>
       <a class="gallery-card" href="146.GIF" target="_blank"><img src="146.GIF" alt="Resim 146"></a>
-
-      <a class="gallery-card" href="144.MP4" target="_blank">
-        <video preload="auto">
+      <a class="gallery-card" href="144.MP4" target="_blank"><video preload="auto">
           <source src="144.MP4#t=6.6" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
+        </video></a>
       <a class="gallery-card" href="137.GIF" target="_blank"><img src="137.GIF" alt="Resim 137"></a>
       <a class="gallery-card" href="138.GIF" target="_blank"><img src="138.GIF" alt="Resim 138"></a>
       <a class="gallery-card" href="139.jpg" target="_blank"><img src="139.jpg" alt="Resim 139"></a>
       <a class="gallery-card" href="140.jpg" target="_blank"><img src="140.jpg" alt="Resim 140"></a>
       <a class="gallery-card" href="141.JPG" target="_blank"><img src="141.JPG" alt="Resim 141"></a>
-
-      <a class="gallery-card" href="147.MP4" target="_blank">
-        <video preload="auto">
+      <a class="gallery-card" href="147.MP4" target="_blank"><video preload="auto">
           <source src="147.MP4#t=232.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-      <a class="gallery-card" href="148.MP4" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="148.MP4" target="_blank"><video preload="auto">
           <source src="148.MP4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-      <a class="gallery-card" href="149.mp4" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="149.mp4" target="_blank"><video preload="auto">
           <source src="149.mp4#t=304" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-      <a class="gallery-card" href="150.MP4" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="150.MP4" target="_blank"><video preload="auto">
           <source src="150.MP4#t=96" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-
-      <a class="gallery-card" href="106.MP4" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="106.MP4" target="_blank"><video preload="auto">
           <source src="106.MP4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-      <a class="gallery-card" href="110.MP4" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="110.MP4" target="_blank"><video preload="auto">
           <source src="110.MP4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
-      <a class="gallery-card" href="114.MP4" target="_blank">
-        <video preload="auto">
+        </video></a>
+      <a class="gallery-card" href="114.MP4" target="_blank"><video preload="auto">
           <source src="114.MP4#t=0.5" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </a>
+        </video></a>
       <a class="gallery-card" href="107.GIF" target="_blank"><img src="107.GIF" alt="Resim 107"></a>
       <a class="gallery-card" href="108.GIF" target="_blank"><img src="108.GIF" alt="Resim 108"></a>
       <a class="gallery-card" href="109.GIF" target="_blank"><img src="109.GIF" alt="Resim 109"></a>
-
       <a class="gallery-card" href="111.GIF" target="_blank"><img src="111.GIF" alt="Resim 111"></a>
       <a class="gallery-card" href="112.GIF" target="_blank"><img src="112.GIF" alt="Resim 112"></a>
       <a class="gallery-card" href="113.GIF" target="_blank"><img src="113.GIF" alt="Resim 113"></a>
       <a class="gallery-card" href="115.GIF" target="_blank"><img src="115.GIF" alt="Resim 115"></a>
       <a class="gallery-card" href="116.GIF" target="_blank"><img src="116.GIF" alt="Resim 116"></a>
-
       <a class="gallery-card" href="118.GIF" target="_blank"><img src="118.GIF" alt="Resim 118"></a>
       <a class="gallery-card" href="119.GIF" target="_blank"><img src="119.GIF" alt="Resim 119"></a>
       <a class="gallery-card" href="120.GIF" target="_blank"><img src="120.GIF" alt="Resim 120"></a>
@@ -948,35 +751,23 @@
       <a class="gallery-card" href="134.GIF" target="_blank"><img src="134.GIF" alt="Resim 134"></a>
       <a class="gallery-card" href="135.GIF" target="_blank"><img src="135.GIF" alt="Resim 135"></a>
       <a class="gallery-card" href="136.GIF" target="_blank"><img src="136.GIF" alt="Resim 136"></a>
-
       <a class="gallery-card" href="142.GIF" target="_blank"><img src="142.GIF" alt="Resim 142"></a>
       <a class="gallery-card" href="143.GIF" target="_blank"><img src="143.GIF" alt="Resim 143"></a>
-
-
-
-
-
-
     </div>
   </main>
 
-
-  <!-- Lightbox Modal DOM -->
   <div class="lightbox" id="lightbox">
     <div class="lightbox-controls">
       <button class="lightbox-btn" id="lightboxCloseBtn" title="Kapat (Esc)">✕</button>
     </div>
     <button class="lightbox-nav-btn lightbox-nav-prev" id="lightboxPrevBtn" title="Önceki (Sol Ok)">❮</button>
     <button class="lightbox-nav-btn lightbox-nav-next" id="lightboxNextBtn" title="Sonraki (Sağ Ok)">❯</button>
-
     <div class="lightbox-content-wrapper">
       <div class="lightbox-media-container" id="lightboxMediaContainer"></div>
       <div class="lightbox-footer">
         <span class="lightbox-filename" id="lightboxFilename"></span>
         <span class="lightbox-counter" id="lightboxCounter"></span>
-        <a href="#" target="_blank" class="lightbox-open-btn" id="lightboxOpenBtn">
-          ↗ Sekmede Aç
-        </a>
+        <a href="#" target="_blank" class="lightbox-open-btn" id="lightboxOpenBtn">↗ Sekmede Aç</a>
       </div>
     </div>
   </div>
@@ -1002,15 +793,12 @@
       cards.forEach((card) => {
         const href = card.getAttribute('href');
         if (!href) return;
-
         const isVideo = href.match(/\.(mp4|MP4|mov|MOV)($|\?|#)/i);
         const isImage = href.match(/\.(gif|GIF|jpg|JPG|png|PNG|jpeg|JPEG|webp)($|\?|#)/i);
 
         if (isVideo || isImage) {
           card.classList.add('lightbox-trigger');
           if (isVideo) card.classList.add('is-video');
-
-          // Add media format badge if not present
           if (!card.querySelector('.media-badge')) {
             const ext = href.split('.').pop().split('#')[0].split('?')[0].toUpperCase();
             const badge = document.createElement('span');
@@ -1018,33 +806,19 @@
             badge.textContent = ext;
             card.appendChild(badge);
           }
-
           const itemIndex = mediaItems.length;
-          mediaItems.push({
-            url: href,
-            type: isVideo ? 'video' : 'image',
-            filename: href,
-            card: card
-          });
-
-          card.addEventListener('click', (e) => {
-            e.preventDefault();
-            openLightbox(itemIndex);
-          });
+          mediaItems.push({ url: href, type: isVideo ? 'video' : 'image', filename: href, card: card });
+          card.addEventListener('click', (e) => { e.preventDefault(); openLightbox(itemIndex); });
         }
       });
 
-      // Update total badge count
       const totalBadge = document.getElementById('totalBadge');
-      if (totalBadge) {
-        totalBadge.textContent = `${mediaItems.length} Medya`;
-      }
+      if (totalBadge) totalBadge.textContent = `${mediaItems.length} Medya`;
 
       function openLightbox(index) {
         if (index < 0 || index >= mediaItems.length) return;
         currentIndex = index;
         const item = mediaItems[currentIndex];
-
         lightboxMediaContainer.innerHTML = '';
         if (item.type === 'video') {
           const videoEl = document.createElement('video');
@@ -1060,7 +834,6 @@
           imgEl.alt = item.filename;
           lightboxMediaContainer.appendChild(imgEl);
         }
-
         lightboxFilename.textContent = item.filename;
         lightboxCounter.textContent = `${currentIndex + 1} / ${mediaItems.length}`;
         lightboxOpenBtn.href = item.url;
@@ -1074,22 +847,14 @@
         lightboxMediaContainer.innerHTML = '';
       }
 
-      function showNext() {
-        openLightbox((currentIndex + 1) % mediaItems.length);
-      }
-
-      function showPrev() {
-        openLightbox((currentIndex - 1 + mediaItems.length) % mediaItems.length);
-      }
+      function showNext() { openLightbox((currentIndex + 1) % mediaItems.length); }
+      function showPrev() { openLightbox((currentIndex - 1 + mediaItems.length) % mediaItems.length); }
 
       if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
       if (nextBtn) nextBtn.addEventListener('click', showNext);
       if (prevBtn) prevBtn.addEventListener('click', showPrev);
 
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
-      });
-
+      lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
       document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('active')) return;
         if (e.key === 'Escape') closeLightbox();
@@ -1097,21 +862,10 @@
         if (e.key === 'ArrowLeft') showPrev();
       });
 
-      // Back to top scrolling
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 400) {
-          backTopBtn.classList.add('visible');
-        } else {
-          backTopBtn.classList.remove('visible');
-        }
-      });
-
-      backTopBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+      window.addEventListener('scroll', () => { backTopBtn.classList.toggle('visible', window.scrollY > 400); });
+      backTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     });
   </script>
-
 </body>
 
 </html>
