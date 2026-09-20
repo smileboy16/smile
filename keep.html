@@ -134,42 +134,81 @@
       position: relative;
       width: 100%;
       padding-bottom: 56.25%; /* 16:9 aspect ratio */
-      background: #000;
+      background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+      overflow: hidden;
     }
     .keep-video-wrapper video, .keep-video-wrapper iframe {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
       border: none;
+      z-index: 1;
     }
-    .keep-video-wrapper:not(.is-playing) iframe {
-      pointer-events: none;
+    .keep-video-wrapper:not(.is-playing):not(.has-preview-frame) iframe {
+      display: none;
     }
     .keep-video-placeholder {
       position: absolute;
       inset: 0;
       z-index: 2;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: transparent;
+      gap: 10px;
+      background: rgba(11, 15, 25, 0.22);
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
       touch-action: pan-y;
+      transition: background 0.2s ease;
     }
-    .keep-video-placeholder::after {
-      content: '';
+    .keep-video-placeholder:hover {
+      background: rgba(11, 15, 25, 0.38);
+    }
+    .keep-video-thumb {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 1;
+      transition: transform 0.3s ease;
+      z-index: 1;
+    }
+    .keep-video-wrapper:hover .keep-video-thumb {
+      transform: scale(1.04);
+    }
+    .keep-play-btn {
       width: 56px;
       height: 56px;
       border-radius: 50%;
-      background: rgba(99, 102, 241, 0.88);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+      background: rgba(99, 102, 241, 0.92);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5);
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: 54% 50%;
       background-size: 28px 28px;
       pointer-events: none;
-      opacity: 0.95;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+      z-index: 2;
+    }
+    .keep-video-placeholder:hover .keep-play-btn {
+      transform: scale(1.1);
+      background-color: var(--accent-hover);
+    }
+    .keep-video-badge {
+      z-index: 2;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color: #cbd5e1;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+      letter-spacing: 0.02em;
     }
     .keep-video-wrapper.is-playing .keep-video-placeholder { display: none; }
     .search-wrap { flex: 1; min-width: 140px; max-width: 320px; }
@@ -232,13 +271,52 @@
     }
     #toast.show { transform: translateX(-50%) translateY(0); }
     
+    html, body {
+      overflow-x: hidden;
+    }
+
     @media (max-width: 768px) {
-      .header { padding: 12px 16px; }
+      .header { padding: 10px 14px; }
       .container { padding: 0 12px; margin: 16px auto; }
       .keep-grid { grid-template-columns: 1fr; gap: 12px; }
       .logo-subtitle { display: none; }
-      .search-wrap { max-width: none; flex: 1 1 100%; order: 3; }
-      .header-container { gap: 10px; }
+      .header-container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .logo-group {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .nav-group {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+      }
+      .search-wrap {
+        order: 1;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        flex: 1 1 100%;
+      }
+      .total-badge {
+        order: 2;
+        font-size: 0.8rem;
+        padding: 5px 10px;
+      }
+      .nav-btn {
+        order: 2;
+        flex: 1 1 auto;
+        text-align: center;
+        padding: 7px 10px;
+        font-size: 0.82rem;
+        white-space: nowrap;
+      }
     }
   
 
@@ -934,34 +1012,34 @@
 </div>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image87.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image87.png"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image90.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image90.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image89.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image89.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image95.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image95.png"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image93.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image93.jpg"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image99.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image99.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image97.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image97.png"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image97.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image97.png"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image102.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image102.jpg"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image107.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image107.jpg"/>
 </div>
 <div class="keep-card">
 <div class="keep-text-note">jakehairyboy insta</div>
@@ -1093,16 +1171,16 @@
 <div class="keep-text-note">abs_art_official insta</div>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image86.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image86.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image14.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image14.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image16.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image16.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image17.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image17.gif"/>
 </div>
 <div class="keep-card">
 <div class="keep-card-content">
@@ -1159,16 +1237,16 @@
 </div>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image18.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image18.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image19.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image19.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image20.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image20.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image21.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image21.gif"/>
 </div>
 <div class="keep-card">
 <div class="keep-card-content">
@@ -1177,22 +1255,22 @@
 </div>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image22.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image22.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image23.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image23.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image24.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image24.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image1.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image1.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image2.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image2.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image3.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image3.gif"/>
 </div>
 <div class="keep-card">
 <div class="keep-card-content">
@@ -1231,76 +1309,76 @@
 </div>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image4.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image4.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image5.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image5.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image6.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image6.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image7.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image7.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image8.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image8.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image9.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image9.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image10.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image10.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image37.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image37.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image38.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image38.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image39.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image39.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image40.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image40.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image41.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image41.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image42.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image42.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image43.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image43.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image44.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image44.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image45.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image45.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image46.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image46.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image36.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image36.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image27.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image27.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image28.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image28.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image29.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image29.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image30.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image30.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image31.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image31.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image32.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image32.gif"/>
 </div>
 <div class="keep-card">
 <div class="keep-card-content">
@@ -1399,97 +1477,97 @@
 </div>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image33.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image33.png"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image34.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image34.jpg"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image35.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image35.jpg"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image25.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image25.jpg"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image26.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image26.jpg"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image72.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image72.jpg"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image74.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image74.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image75.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image75.jpg"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image77.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image77.jpg"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image79.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image79.jpg"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image81.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image81.jpg"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image83.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image83.jpg"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image85.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image85.png"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image68.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image68.jpg"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image69.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image69.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image70.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image70.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image55.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image55.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image57.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image57.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image59.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image59.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image61.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image61.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image63.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image63.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image64.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image64.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image66.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image66.png"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image48.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image48.png"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image50.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image50.png"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image51.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image51.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image53.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image53.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image98.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image98.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image100.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image100.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image103.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image103.gif"/>
 </div>
 <div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image105.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image105.gif"/>
 </div>
 <div class="keep-card">
 <div class="keep-card-content">
@@ -1633,17 +1711,17 @@
 <a class="keep-link" href="https://hotntubes.com/to/1489728-gay_gifs_compilation___part_2.html" target="_blank" title="https://hotntubes.com/to/1489728-gay_gifs_compilation___part_2.html">↗ Bağlantıya Git</a>
 </div>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image106.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image106.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image108.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image108.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image12.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image12.jpg"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image11.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image11.jpg"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image15.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image15.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image13.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image13.png"/>
 </div><div class="keep-card">
 <div class="keep-text-note">Le Corps des Anges filmi</div>
 </div><div class="keep-card">
@@ -1674,57 +1752,57 @@
 <a class="keep-link" href="https://www.gayporntube.com/video/1540490/summer-pair" target="_blank" title="https://www.gayporntube.com/video/1540490/summer-pair">↗ Bağlantıya Git</a>
 </div>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image109.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image109.jpg"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image85.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image85.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image96.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image96.gif"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image104.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image104.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image101.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image101.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image91.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image91.gif"/>
 </div><div class="keep-card">
 <div class="keep-card-content">
 <div class="keep-title">https://www.boyfriendtv.com/videos/168699/boy-with-big-cock-fucks-hi-lover-in-the-shower/?pl=1528631&amp;tag=gay%20kissing%20cock%20boys%20boy%20bareback%20latinoz%20fledgling%20videos&amp;withoutId=587869&amp;_=1729168088350&amp;ct=8--1729168088</div>
 <a class="keep-link" href="https://www.boyfriendtv.com/videos/168699/boy-with-big-cock-fucks-hi-lover-in-the-shower/?pl=1528631&amp;tag=gay+kissing+cock+boys+boy+bareback+latinoz+fledgling+videos&amp;withoutId=587869&amp;_=1729168088350&amp;ct=8--1729168088" target="_blank" title="https://www.boyfriendtv.com/videos/168699/boy-with-big-cock-fucks-hi-lover-in-the-shower/?pl=1528631&amp;tag=gay+kissing+cock+boys+boy+bareback+latinoz+fledgling+videos&amp;withoutId=587869&amp;_=1729168088350&amp;ct=8--1729168088">↗ Bağlantıya Git</a>
 </div>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image88.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image88.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image94.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image94.gif"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image92.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image92.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image62.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image62.gif"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image67.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image67.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image65.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image65.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image56.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image56.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image54.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image54.gif"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image60.gif"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image60.gif"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image58.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image58.jpg"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image49.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image49.png"/>
 </div><div class="keep-card">
 <div class="keep-card-content">
 <div class="keep-title">My Boyfriends Birthday Ben Masters And Angel Rivera</div>
 <a class="keep-link" href="https://www.boyfriendtv.com/videos/1053868/my-boyfriends-birthday-ben-masters-and-angel-rivera/" target="_blank" title="https://www.boyfriendtv.com/videos/1053868/my-boyfriends-birthday-ben-masters-and-angel-rivera/">↗ Bağlantıya Git</a>
 </div>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image47.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image47.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image52.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image52.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image80.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image80.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image78.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image78.png"/>
 </div><div class="keep-card">
 <div class="keep-card-content">
 <div class="keep-title">Gay Belami</div>
@@ -1733,7 +1811,7 @@
 </div><div class="keep-card">
 <div class="keep-text-note">charming_will insta</div>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image84.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image84.png"/>
 </div><div class="keep-card">
 <div class="keep-card-content">
 <div class="keep-title">View Video.Php?Viewkey=63Fe8737786D2</div>
@@ -1759,9 +1837,9 @@
 <a class="keep-link" href="https://www.gayporntube.com/video/1732302/hbw-cam-boys-fuck-4101954" target="_blank" title="https://www.gayporntube.com/video/1732302/hbw-cam-boys-fuck-4101954">↗ Bağlantıya Git</a>
 </div>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image82.png"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image82.png"/>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image73.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image73.jpg"/>
 </div><div class="keep-card">
 <div class="keep-card-content">
 <div class="keep-title">View Video.Php?Viewkey=64031Ef8Ae655</div>
@@ -1938,13 +2016,13 @@
 </div><div class="keep-card">
 <div class="keep-text-note">kauacandeia</div>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image71.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image71.jpg"/>
 </div><div class="keep-card">
 <div class="keep-text-note">boymmsole</div>
 </div><div class="keep-card">
 <div class="keep-text-note">zen.addie</div>
 </div><div class="keep-card">
-<img alt="Image" class="keep-media" loading="lazy" src="keep/image76.jpg"/>
+<img alt="Image" class="keep-media" loading="lazy" decoding="async" src="keep/image76.jpg"/>
 </div><div class="keep-card">
 <div class="keep-text-note">luccaparis19</div>
 </div><div class="keep-card">
@@ -2107,13 +2185,95 @@
 <div id="toast">Metin kopyalandı!</div><div id="lightbox"><button aria-label="Kapat" id="lightbox-close" type="button">×</button><img alt="Büyük görüntü" id="lightbox-img" src=""/></div><script>
     document.addEventListener("DOMContentLoaded", function() {
         const links = document.querySelectorAll('.keep-link');
+        let activeVideoWrapper = null;
+        const activePreviewWrappers = new Set();
+        const MAX_PREVIEWS = 2; // Belleği korumak için ekranda aynı anda en fazla 2 önizleme iframe'i tutulur
+
+        function getDomainName(url) {
+            try {
+                return new URL(url).hostname.replace(/^www\./, '');
+            } catch(e) {
+                return 'Video';
+            }
+        }
+
+        // Görseli olmayan (BoyfriendTV vb.) videolar için sanal önizleme gözlemcisi
+        const previewObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const wrapper = entry.target;
+                const embedSrc = wrapper.dataset.embedSrc;
+                if (!embedSrc) return;
+
+                if (entry.isIntersecting) {
+                    // Ekrana girdiğinde: henüz iframe yoksa önizleme iframe'i oluştur
+                    if (!wrapper.querySelector('iframe')) {
+                        if (activePreviewWrappers.size >= MAX_PREVIEWS) {
+                            const oldest = activePreviewWrappers.values().next().value;
+                            if (oldest && oldest !== activeVideoWrapper && !oldest.classList.contains('is-playing')) {
+                                const oldIframe = oldest.querySelector('iframe');
+                                if (oldIframe) {
+                                    oldIframe.src = 'about:blank';
+                                    oldIframe.remove();
+                                }
+                                oldest.classList.remove('has-preview-frame');
+                                activePreviewWrappers.delete(oldest);
+                            }
+                        }
+
+                        const iframe = document.createElement('iframe');
+                        iframe.setAttribute('frameborder', '0');
+                        iframe.setAttribute('allowfullscreen', '');
+                        iframe.setAttribute('loading', 'lazy');
+                        iframe.src = embedSrc;
+                        wrapper.insertBefore(iframe, wrapper.firstChild);
+                        wrapper.classList.add('has-preview-frame');
+                        activePreviewWrappers.add(wrapper);
+                    }
+                } else {
+                    // Ekrandan çıktığında: oynatılmıyorsa belleği korumak için iframe'i kaldır
+                    if (wrapper !== activeVideoWrapper && !wrapper.classList.contains('is-playing')) {
+                        const iframe = wrapper.querySelector('iframe');
+                        if (iframe) {
+                            iframe.src = 'about:blank';
+                            iframe.remove();
+                        }
+                        wrapper.classList.remove('has-preview-frame');
+                        activePreviewWrappers.delete(wrapper);
+                    }
+                }
+            });
+        }, { rootMargin: '120px' });
+
         links.forEach(link => {
             const url = link.href;
             let embedUrl = '';
+            let thumbUrl = '';
             
             try {
                 if (url.includes('gayporntube.com/video/')) {
-                    embedUrl = 'https://www.gayporntube.com/embed/' + url.split('/video/')[1].split('/')[0];
+                    const vidMatch = url.match(/\/video\/(\d+)/);
+                    if (vidMatch) {
+                        const numId = parseInt(vidMatch[1], 10);
+                        embedUrl = 'https://www.gayporntube.com/embed/' + numId;
+                        const folder = Math.floor(numId / 1000) * 1000;
+                        thumbUrl = 'https://static.gayporntube.com/contents/videos_screenshots/' + folder + '/' + numId + '/preview.jpg';
+                    }
+                } else if (url.includes('gayboystube.com/video/')) {
+                    const vidMatch = url.match(/\/video\/(\d+)/);
+                    if (vidMatch) {
+                        const numId = parseInt(vidMatch[1], 10);
+                        embedUrl = 'https://www.gayboystube.com/embed/' + numId;
+                        const folder = Math.floor(numId / 1000) * 1000;
+                        thumbUrl = 'https://static.gayboystube.com/contents/videos_screenshots/' + folder + '/' + numId + '/preview.jpg';
+                    }
+                } else if (url.includes('porkytube.com/videos/')) {
+                    const vidMatch = url.match(/\/videos\/(\d+)/);
+                    if (vidMatch) {
+                        const numId = parseInt(vidMatch[1], 10);
+                        embedUrl = 'https://www.porkytube.com/embed/' + numId;
+                        const folder = Math.floor(numId / 1000) * 1000;
+                        thumbUrl = 'https://static.porkytube.com/contents/videos_screenshots/' + folder + '/' + numId + '/preview.jpg';
+                    }
                 } else if (url.includes('boyfriendtv.com/videos/')) {
                     embedUrl = 'https://www.boyfriendtv.com/embed/' + url.split('/videos/')[1].split('/')[0];
                 } else if (url.includes('xvideos.com/video.')) {
@@ -2127,13 +2287,13 @@
                 } else if (url.includes('pornhub.com/view_video.php?viewkey=')) {
                     embedUrl = 'https://www.pornhub.com/embed/' + url.split('viewkey=')[1].split('&')[0];
                 } else if (url.includes('youtube.com/watch?v=')) {
-                    embedUrl = 'https://www.youtube.com/embed/' + url.split('v=')[1].split('&')[0];
+                    const vid = url.split('v=')[1].split('&')[0];
+                    embedUrl = 'https://www.youtube.com/embed/' + vid;
+                    thumbUrl = 'https://img.youtube.com/vi/' + vid + '/hqdefault.jpg';
                 } else if (url.includes('youtu.be/')) {
-                    embedUrl = 'https://www.youtube.com/embed/' + url.split('youtu.be/')[1].split('?')[0];
-                } else if (url.includes('gayboystube.com/video/')) {
-                    embedUrl = 'https://www.gayboystube.com/embed/' + url.split('/video/')[1].split('/')[0];
-                } else if (url.includes('porkytube.com/videos/')) {
-                    embedUrl = 'https://www.porkytube.com/embed/' + url.split('/videos/')[1].split('/')[0];
+                    const vid = url.split('youtu.be/')[1].split('?')[0];
+                    embedUrl = 'https://www.youtube.com/embed/' + vid;
+                    thumbUrl = 'https://img.youtube.com/vi/' + vid + '/hqdefault.jpg';
                 } else if (url.includes('thisvid.com/videos/')) {
                     embedUrl = 'https://thisvid.com/embed/' + url.split('/videos/')[1].split('/')[0];
                 } else if (url.includes('yeptube.com/')) {
@@ -2154,23 +2314,69 @@
             if (embedUrl) {
                 const cardContent = link.closest('.keep-card-content');
                 if (cardContent && !cardContent.previousElementSibling?.classList.contains('keep-video-wrapper')) {
-                    // Otomatik oynatmayı azaltmak için bilinen parametreler
                     let src = embedUrl;
-                    if (src.includes('youtube.com/embed/') && !src.includes('autoplay=')) {
-                        src += (src.includes('?') ? '&' : '?') + 'autoplay=0';
-                    }
+                    const domain = getDomainName(url);
                     const videoWrapper = document.createElement('div');
                     videoWrapper.className = 'keep-video-wrapper';
-                    // iframe hemen yüklenir → önizleme görünür; üstteki katman kaydırmada oynatmayı engeller
-                    videoWrapper.innerHTML =
-                        '<iframe src="' + src + '" frameborder="0" allowfullscreen loading="lazy" allow="fullscreen"></iframe>' +
-                        '<div class="keep-video-placeholder" role="button" aria-label="Videoyu oynat"></div>';
-                    const placeholder = videoWrapper.querySelector('.keep-video-placeholder');
+                    
+                    if (thumbUrl) {
+                        const img = document.createElement('img');
+                        img.className = 'keep-video-thumb';
+                        img.src = thumbUrl;
+                        img.alt = 'Video Önizleme';
+                        img.loading = 'lazy';
+                        img.decoding = 'async';
+                        img.setAttribute('referrerpolicy', 'no-referrer');
+                        img.onerror = function() {
+                            this.style.display = 'none';
+                            videoWrapper.dataset.embedSrc = src;
+                            previewObserver.observe(videoWrapper);
+                        };
+                        videoWrapper.appendChild(img);
+                    } else {
+                        // Statik kapak resmi olmayanlar ekrana girdiğinde sanal önizleme ile yüklenir
+                        videoWrapper.dataset.embedSrc = src;
+                        previewObserver.observe(videoWrapper);
+                    }
+
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'keep-video-placeholder';
+                    placeholder.setAttribute('role', 'button');
+                    placeholder.setAttribute('aria-label', 'Videoyu oynat');
+                    placeholder.innerHTML = '<div class="keep-play-btn"></div><span class="keep-video-badge">' + domain + '</span>';
+                    videoWrapper.appendChild(placeholder);
+
                     let touchMoved = false;
                     let touchStartY = 0;
-                    const enablePlay = function() {
+                    
+                    const startPlay = function() {
+                        if (activeVideoWrapper && activeVideoWrapper !== videoWrapper) {
+                            // Önceki videoyu bellekten kaldırarak hafızayı koru
+                            const prevIframe = activeVideoWrapper.querySelector('iframe');
+                            if (prevIframe) {
+                                prevIframe.src = 'about:blank';
+                                prevIframe.remove();
+                            }
+                            activeVideoWrapper.classList.remove('is-playing', 'has-preview-frame');
+                            activePreviewWrappers.delete(activeVideoWrapper);
+                        }
+                        
+                        let iframe = videoWrapper.querySelector('iframe');
+                        const playSrc = src.includes('autoplay=') ? src : (src + (src.includes('?') ? '&' : '?') + 'autoplay=1');
+                        if (!iframe) {
+                            iframe = document.createElement('iframe');
+                            iframe.setAttribute('frameborder', '0');
+                            iframe.setAttribute('allowfullscreen', '');
+                            iframe.setAttribute('allow', 'autoplay; fullscreen; encrypted-media');
+                            iframe.src = playSrc;
+                            videoWrapper.insertBefore(iframe, videoWrapper.firstChild);
+                        } else {
+                            iframe.src = playSrc;
+                        }
                         videoWrapper.classList.add('is-playing');
+                        activeVideoWrapper = videoWrapper;
                     };
+
                     placeholder.addEventListener('touchstart', function(e) {
                         touchMoved = false;
                         touchStartY = e.touches[0].clientY;
@@ -2181,12 +2387,12 @@
                     placeholder.addEventListener('touchend', function(e) {
                         if (touchMoved) return;
                         e.preventDefault();
-                        enablePlay();
+                        startPlay();
                     });
                     placeholder.addEventListener('click', function(e) {
                         e.preventDefault();
                         e.stopPropagation();
-                        enablePlay();
+                        startPlay();
                     });
                     cardContent.parentNode.insertBefore(videoWrapper, cardContent);
                 }
