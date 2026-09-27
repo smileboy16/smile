@@ -231,6 +231,7 @@
       -webkit-tap-highlight-color: transparent;
       touch-action: pan-y;
       transition: background 0.2s ease;
+      text-decoration: none;
     }
 
     .keep-video-placeholder:hover {
@@ -3074,7 +3075,6 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const links = document.querySelectorAll('.keep-link');
-      let activeVideoWrapper = null;
       const activePreviewWrappers = new Set();
       const MAX_PREVIEWS = 2; // Belleği korumak için ekranda aynı anda en fazla 2 önizleme iframe'i tutulur
 
@@ -3098,7 +3098,7 @@
             if (!wrapper.querySelector('iframe')) {
               if (activePreviewWrappers.size >= MAX_PREVIEWS) {
                 const oldest = activePreviewWrappers.values().next().value;
-                if (oldest && oldest !== activeVideoWrapper && !oldest.classList.contains('is-playing')) {
+                if (oldest) {
                   const oldIframe = oldest.querySelector('iframe');
                   if (oldIframe) {
                     oldIframe.src = 'about:blank';
@@ -3119,16 +3119,14 @@
               activePreviewWrappers.add(wrapper);
             }
           } else {
-            // Ekrandan çıktığında: oynatılmıyorsa belleği korumak için iframe'i kaldır
-            if (wrapper !== activeVideoWrapper && !wrapper.classList.contains('is-playing')) {
-              const iframe = wrapper.querySelector('iframe');
-              if (iframe) {
-                iframe.src = 'about:blank';
-                iframe.remove();
-              }
-              wrapper.classList.remove('has-preview-frame');
-              activePreviewWrappers.delete(wrapper);
+            // Ekrandan çıktığında: belleği korumak için iframe'i kaldır
+            const iframe = wrapper.querySelector('iframe');
+            if (iframe) {
+              iframe.src = 'about:blank';
+              iframe.remove();
             }
+            wrapper.classList.remove('has-preview-frame');
+            activePreviewWrappers.delete(wrapper);
           }
         });
       }, { rootMargin: '120px' });
@@ -3228,61 +3226,14 @@
               previewObserver.observe(videoWrapper);
             }
 
-            const placeholder = document.createElement('div');
+            const placeholder = document.createElement('a');
             placeholder.className = 'keep-video-placeholder';
-            placeholder.setAttribute('role', 'button');
-            placeholder.setAttribute('aria-label', 'Videoyu oynat');
+            placeholder.href = url;
+            placeholder.target = '_blank';
+            placeholder.rel = 'noopener noreferrer';
+            placeholder.setAttribute('aria-label', 'Bağlantıyı aç');
             placeholder.innerHTML = '<div class="keep-play-btn"></div><span class="keep-video-badge">' + domain + '</span>';
             videoWrapper.appendChild(placeholder);
-
-            let touchMoved = false;
-            let touchStartY = 0;
-
-            const startPlay = function () {
-              if (activeVideoWrapper && activeVideoWrapper !== videoWrapper) {
-                // Önceki videoyu bellekten kaldırarak hafızayı koru
-                const prevIframe = activeVideoWrapper.querySelector('iframe');
-                if (prevIframe) {
-                  prevIframe.src = 'about:blank';
-                  prevIframe.remove();
-                }
-                activeVideoWrapper.classList.remove('is-playing', 'has-preview-frame');
-                activePreviewWrappers.delete(activeVideoWrapper);
-              }
-
-              let iframe = videoWrapper.querySelector('iframe');
-              const playSrc = src.includes('autoplay=') ? src : (src + (src.includes('?') ? '&' : '?') + 'autoplay=1');
-              if (!iframe) {
-                iframe = document.createElement('iframe');
-                iframe.setAttribute('frameborder', '0');
-                iframe.setAttribute('allowfullscreen', '');
-                iframe.setAttribute('allow', 'autoplay; fullscreen; encrypted-media');
-                iframe.src = playSrc;
-                videoWrapper.insertBefore(iframe, videoWrapper.firstChild);
-              } else {
-                iframe.src = playSrc;
-              }
-              videoWrapper.classList.add('is-playing');
-              activeVideoWrapper = videoWrapper;
-            };
-
-            placeholder.addEventListener('touchstart', function (e) {
-              touchMoved = false;
-              touchStartY = e.touches[0].clientY;
-            }, { passive: true });
-            placeholder.addEventListener('touchmove', function (e) {
-              if (Math.abs(e.touches[0].clientY - touchStartY) > 8) touchMoved = true;
-            }, { passive: true });
-            placeholder.addEventListener('touchend', function (e) {
-              if (touchMoved) return;
-              e.preventDefault();
-              startPlay();
-            });
-            placeholder.addEventListener('click', function (e) {
-              e.preventDefault();
-              e.stopPropagation();
-              startPlay();
-            });
             cardContent.parentNode.insertBefore(videoWrapper, cardContent);
           }
         }
