@@ -590,7 +590,7 @@
           <input type="search" class="search-input" id="searchInput" placeholder="Ara..." autocomplete="off" />
         </div>
         <span class="total-badge" id="totalBadge">Medya</span>
-        <a href="index.html" class="nav-btn">Ana Sayfa</a>
+        <a href="index.html?page=home" class="nav-btn">Ana Sayfa</a>
         <a href="index2.html" class="nav-btn active">Yeni Sayfa (Galeri 2)</a>
         <a href="keep.html" class="nav-btn">Keep</a>
       </div>
@@ -1001,6 +1001,7 @@
   <button class="back-top-btn" id="backTopBtn" title="Yukarı Çık">▲</button>
 
   <script>
+    sessionStorage.removeItem('stayOnHome');
     document.addEventListener('DOMContentLoaded', () => {
       const cards = Array.from(document.querySelectorAll('.gallery-card'));
       const lightbox = document.getElementById('lightbox');
