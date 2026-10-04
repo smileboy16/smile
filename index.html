@@ -4,9 +4,18 @@
 <head>
   <meta charset="utf-8">
   <title>Smile - Medya Galerisi</title>
-  <meta http-equiv="refresh" content="0; url=index2.html">
   <script>
-    window.location.replace("index2.html");
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const ref = document.referrer || '';
+      // Eğer kullanıcı navigasyondan "Ana Sayfa" butonuna tıklayarak geldiyse veya sayfada geziniyorsa index.html'de kal
+      if (params.has('page') || params.has('home') || ref.includes('index2.html') || ref.includes('keep.html') || sessionStorage.getItem('stayOnHome') === '1') {
+        sessionStorage.setItem('stayOnHome', '1');
+        return;
+      }
+      // Doğrudan ilk giriş (GitHub varsayılan kök dizin açılışı): index2.html'e yönlendir
+      window.location.replace("index2.html");
+    })();
   </script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -598,7 +607,7 @@
           <input type="search" class="search-input" id="searchInput" placeholder="Ara..." autocomplete="off"/>
         </div>
         <span class="total-badge" id="totalBadge">Medya</span>
-        <a href="index.html" class="nav-btn active">Ana Sayfa</a>
+        <a href="index.html?page=home" class="nav-btn active">Ana Sayfa</a>
         <a href="index2.html" class="nav-btn">Yeni Sayfa (Galeri 2)</a>
         <a href="keep.html" class="nav-btn">Keep</a>
       </div>
