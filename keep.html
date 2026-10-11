@@ -3430,7 +3430,7 @@
               const numId = parseInt(vidMatch[1], 10);
               embedUrl = 'https://www.porkytube.com/embed/' + numId;
               const folder = Math.floor(numId / 1000) * 1000;
-              thumbUrl = 'https://static.porkytube.com/contents/videos_screenshots/' + folder + '/' + numId + '/preview.jpg';
+              thumbUrl = 'https://porkytube.com/contents/videos_screenshots/' + folder + '/' + numId + '/preview.jpg';
             }
           } else if (url.includes('boyfriendtv.com/videos/')) {
             embedUrl = 'https://www.boyfriendtv.com/embed/' + url.split('/videos/')[1].split('/')[0];
@@ -3486,6 +3486,13 @@
               img.decoding = 'async';
               img.setAttribute('referrerpolicy', 'no-referrer');
               img.onerror = function () {
+                if (!this.dataset.triedFallback && this.src.includes('porkytube.com')) {
+                  this.dataset.triedFallback = 'true';
+                  if (this.src.includes('https://porkytube.com')) {
+                    this.src = this.src.replace('https://porkytube.com', 'https://www.porkytube.com');
+                    return;
+                  }
+                }
                 this.style.display = 'none';
                 videoWrapper.dataset.embedSrc = src;
                 previewObserver.observe(videoWrapper);
