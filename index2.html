@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
   <meta charset="utf-8">
   <title>Galeri 2 - Smile Medya</title>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,13 +21,11 @@
       --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
       --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.6);
     }
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-
     body {
       background-color: var(--bg-color);
       color: var(--text-main);
@@ -37,7 +33,6 @@
       min-height: 100vh;
       padding-bottom: 60px;
     }
-
     .header {
       position: sticky;
       top: 0;
@@ -48,7 +43,6 @@
       border-bottom: 1px solid var(--border-color);
       padding: 16px 24px;
     }
-
     .header-container {
       max-width: 1600px;
       margin: 0 auto;
@@ -58,13 +52,11 @@
       gap: 16px;
       flex-wrap: wrap;
     }
-
     .logo-group {
       display: flex;
       align-items: center;
       gap: 14px;
     }
-
     .logo-icon {
       width: 42px;
       height: 42px;
@@ -77,25 +69,21 @@
       font-weight: bold;
       box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
     }
-
     .logo-title {
       font-size: 1.3rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       color: #ffffff;
     }
-
     .logo-subtitle {
       font-size: 0.85rem;
       color: var(--text-muted);
     }
-
     .nav-group {
       display: flex;
       align-items: center;
       gap: 12px;
     }
-
     .nav-btn {
       padding: 8px 18px;
       border-radius: 10px;
@@ -107,20 +95,17 @@
       color: var(--text-muted);
       background: rgba(255, 255, 255, 0.03);
     }
-
     .nav-btn:hover {
       color: #fff;
       border-color: rgba(255, 255, 255, 0.2);
       background: rgba(255, 255, 255, 0.08);
     }
-
     .nav-btn.active {
       background: var(--accent-color);
       color: #fff;
       border-color: var(--accent-color);
       box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
     }
-
     .total-badge {
       background: rgba(99, 102, 241, 0.15);
       color: #818cf8;
@@ -130,13 +115,11 @@
       font-weight: 700;
       border: 1px solid rgba(99, 102, 241, 0.3);
     }
-
     .search-wrap {
       flex: 1;
       min-width: 140px;
       max-width: 320px;
     }
-
     .search-input {
       width: 100%;
       padding: 9px 14px;
@@ -149,74 +132,60 @@
       outline: none;
       transition: border-color 0.2s ease, background 0.2s ease;
     }
-
     .search-input::placeholder {
       color: var(--text-muted);
     }
-
     .search-input:focus {
       border-color: rgba(99, 102, 241, 0.55);
       background: rgba(255, 255, 255, 0.08);
     }
-
     .gallery-card.is-hidden {
       display: none !important;
     }
-
     .container {
       max-width: 1600px;
       margin: 24px auto;
       padding: 0 20px;
     }
-
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 16px;
     }
-
     @media (max-width: 1199px) and (min-width: 769px) {
       .gallery-grid {
         grid-template-columns: repeat(3, 1fr);
       }
     }
-
     html,
     body {
       overflow-x: hidden;
     }
-
     @media (max-width: 768px) {
       .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
       }
-
       .header {
         padding: 10px 14px;
       }
-
       .container {
         padding: 0 12px;
         margin: 16px auto;
       }
-
       .logo-subtitle {
         display: none;
       }
-
       .header-container {
         display: flex;
         flex-direction: column;
         align-items: stretch;
         gap: 10px;
       }
-
       .logo-group {
         width: 100%;
         justify-content: flex-start;
       }
-
       .nav-group {
         display: flex;
         flex-wrap: wrap;
@@ -224,7 +193,6 @@
         gap: 8px;
         width: 100%;
       }
-
       .search-wrap {
         order: 1;
         width: 100%;
@@ -232,13 +200,11 @@
         min-width: 0;
         flex: 1 1 100%;
       }
-
       .total-badge {
         order: 2;
         font-size: 0.8rem;
         padding: 5px 10px;
       }
-
       .nav-btn {
         order: 2;
         flex: 1 1 auto;
@@ -248,7 +214,6 @@
         white-space: nowrap;
       }
     }
-
     .gallery-card {
       position: relative;
       background: var(--card-bg);
@@ -265,14 +230,12 @@
       text-decoration: none;
       color: inherit;
     }
-
     .gallery-card:hover {
       transform: translateY(-4px) scale(1.02);
       border-color: rgba(99, 102, 241, 0.5);
       box-shadow: var(--shadow-lg), 0 0 20px rgba(99, 102, 241, 0.25);
       z-index: 2;
     }
-
     .gallery-card img,
     .gallery-card video {
       width: 100%;
@@ -280,14 +243,23 @@
       object-fit: cover;
       display: block;
       pointer-events: none;
-      transition: transform 0.4s ease;
+      transition: opacity 0.35s ease, transform 0.4s ease;
     }
-
+    .gallery-card.is-video {
+      background: radial-gradient(circle at center, #1e293b 0%, #0b0f19 100%);
+    }
+    .gallery-card video,
+    .gallery-card img.lazy-media {
+      opacity: 0;
+    }
+    .gallery-card video.is-loaded,
+    .gallery-card img.lazy-media.is-loaded {
+      opacity: 1;
+    }
     .gallery-card:hover img,
     .gallery-card:hover video {
       transform: scale(1.06);
     }
-
     .gallery-card.is-video::after {
       content: "▶";
       position: absolute;
@@ -309,13 +281,11 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
       transition: all 0.3s ease;
     }
-
     .gallery-card.is-video:hover::after {
       background: var(--accent-color);
       transform: translate(-50%, -50%) scale(1.15);
       box-shadow: 0 0 20px rgba(99, 102, 241, 0.8);
     }
-
     .media-badge {
       position: absolute;
       top: 8px;
@@ -330,7 +300,6 @@
       border: 1px solid rgba(255, 255, 255, 0.12);
       z-index: 1;
     }
-
     .external-card {
       background: linear-gradient(145deg, #1e1b4b, #2e1065);
       display: flex;
@@ -341,17 +310,14 @@
       text-align: center;
       border-color: rgba(168, 85, 247, 0.3);
     }
-
     .external-card:hover {
       border-color: #a855f7;
       box-shadow: 0 10px 30px rgba(168, 85, 247, 0.35);
     }
-
     .external-card-icon {
       font-size: 32px;
       margin-bottom: 8px;
     }
-
     .external-card-title {
       font-size: 0.9rem;
       font-weight: 700;
@@ -359,7 +325,6 @@
       line-height: 1.3;
       word-break: break-word;
     }
-
     .lightbox {
       position: fixed;
       inset: 0;
@@ -374,12 +339,10 @@
       justify-content: center;
       padding: 20px;
     }
-
     .lightbox.active {
       opacity: 1;
       pointer-events: auto;
     }
-
     .lightbox-content-wrapper {
       position: relative;
       max-width: 90vw;
@@ -389,7 +352,6 @@
       align-items: center;
       justify-content: center;
     }
-
     .lightbox-media-container {
       max-width: 100%;
       max-height: 75vh;
@@ -402,7 +364,6 @@
       background: #000;
       border: 1px solid var(--border-color);
     }
-
     .lightbox-media-container img,
     .lightbox-media-container video {
       max-width: 90vw;
@@ -411,7 +372,6 @@
       height: auto;
       object-fit: contain;
     }
-
     .lightbox-controls {
       position: absolute;
       top: 20px;
@@ -420,7 +380,6 @@
       gap: 12px;
       z-index: 1010;
     }
-
     .lightbox-btn {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -435,12 +394,10 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-
     .lightbox-btn:hover {
       background: rgba(255, 255, 255, 0.25);
       transform: scale(1.1);
     }
-
     .lightbox-nav-btn {
       position: absolute;
       top: 50%;
@@ -459,45 +416,36 @@
       transition: all 0.2s ease;
       z-index: 1005;
     }
-
     .lightbox-nav-btn:hover {
       background: var(--accent-color);
       border-color: var(--accent-color);
       transform: translateY(-50%) scale(1.1);
       box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
     }
-
     .lightbox-nav-prev {
       left: 24px;
     }
-
     .lightbox-nav-next {
       right: 24px;
     }
-
     @media (max-width: 640px) {
-
       .lightbox-nav-prev,
       .lightbox-nav-next {
         width: 42px;
         height: 42px;
         font-size: 18px;
       }
-
       .lightbox-nav-prev {
         left: 10px;
       }
-
       .lightbox-nav-next {
         right: 10px;
       }
-
       .lightbox-controls {
         top: 10px;
         right: 10px;
       }
     }
-
     .lightbox-footer {
       margin-top: 14px;
       display: flex;
@@ -508,19 +456,16 @@
       font-size: 0.9rem;
       gap: 16px;
     }
-
     .lightbox-filename {
       font-weight: 600;
       color: #f1f5f9;
     }
-
     .lightbox-counter {
       font-size: 0.85rem;
       background: rgba(255, 255, 255, 0.1);
       padding: 4px 12px;
       border-radius: 12px;
     }
-
     .lightbox-open-btn {
       color: #818cf8;
       text-decoration: none;
@@ -535,12 +480,10 @@
       border: 1px solid rgba(99, 102, 241, 0.3);
       transition: all 0.2s ease;
     }
-
     .lightbox-open-btn:hover {
       background: var(--accent-color);
       color: #fff;
     }
-
     .back-top-btn {
       position: fixed;
       bottom: 24px;
@@ -562,19 +505,16 @@
       transition: all 0.3s ease;
       z-index: 90;
     }
-
     .back-top-btn.visible {
       opacity: 1;
       pointer-events: auto;
     }
-
     .back-top-btn:hover {
       transform: translateY(-3px) scale(1.08);
       background: var(--accent-hover);
     }
   </style>
 </head>
-
 <body>
   <header class="header">
     <div class="header-container">
@@ -596,525 +536,391 @@
       </div>
     </div>
   </header>
-
   <main class="container">
     <div class="gallery-grid">
-      <a class="gallery-card" href="332.mp4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="332.mp4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="347.GIF" target="_blank"><img data-src="347.GIF" alt="Resim 347" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="346.GIF" target="_blank"><img data-src="346.GIF" alt="Resim 346" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="345.GIF" target="_blank"><img data-src="345.GIF" alt="Resim 345" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="344.GIF" target="_blank"><img data-src="344.GIF" alt="Resim 344" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="343.GIF" target="_blank"><img data-src="343.GIF" alt="Resim 343" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="342.GIF" target="_blank"><img data-src="342.GIF" alt="Resim 342" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="341.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="341.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="331.mp4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="331.mp4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="340.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="340.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="330.GIF" target="_blank"><img src="330.GIF" alt="Resim 330" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="329.GIF" target="_blank"><img src="329.GIF" alt="Resim 329" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="328.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="328.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="339.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="339.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="327.GIF" target="_blank"><img src="327.GIF" alt="Resim 327" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="326.GIF" target="_blank"><img src="326.GIF" alt="Resim 326" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="325.GIF" target="_blank"><img src="325.GIF" alt="Resim 325" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="324.GIF" target="_blank"><img src="324.GIF" alt="Resim 324" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="323.GIF" target="_blank"><img src="323.GIF" alt="Resim 323" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="322.GIF" target="_blank"><img src="322.GIF" alt="Resim 322" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="321.GIF" target="_blank"><img src="321.GIF" alt="Resim 321" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="320.GIF" target="_blank"><img src="320.GIF" alt="Resim 320" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="319.GIF" target="_blank"><img src="319.GIF" alt="Resim 319" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="318.GIF" target="_blank"><img src="318.GIF" alt="Resim 318" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="317.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="317.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="338.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="338.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="316.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="316.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="337.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="337.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="315.GIF" target="_blank"><img src="315.GIF" alt="Resim 315" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="314.GIF" target="_blank"><img src="314.GIF" alt="Resim 314" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="313.GIF" target="_blank"><img src="313.GIF" alt="Resim 313" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="312.GIF" target="_blank"><img src="312.GIF" alt="Resim 312" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="311.GIF" target="_blank"><img src="311.GIF" alt="Resim 311" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="310.GIF" target="_blank"><img src="310.GIF" alt="Resim 310" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="309.GIF" target="_blank"><img src="309.GIF" alt="Resim 309" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="308.GIF" target="_blank"><img src="308.GIF" alt="Resim 308" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="307.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="307.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="336.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="336.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="306.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="306.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="335.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="335.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="305.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="305.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="334.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="334.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="304.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="304.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="333.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="333.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="303.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="303.MP4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="332.mp4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="332.mp4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="302.jpg" target="_blank"><img src="302.jpg" alt="Resim 302" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="301.GIF" target="_blank"><img src="301.GIF" alt="Resim 301" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="300.GIF" target="_blank"><img src="300.GIF" alt="Resim 300" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="299.GIF" target="_blank"><img src="299.GIF" alt="Resim 299" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="298.GIF" target="_blank"><img src="298.GIF" alt="Resim 298" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="297.GIF" target="_blank"><img src="297.GIF" alt="Resim 297" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="296.GIF" target="_blank"><img src="296.GIF" alt="Resim 296" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="295.GIF" target="_blank"><img src="295.GIF" alt="Resim 295" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="294.GIF" target="_blank"><img src="294.GIF" alt="Resim 294" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="293.GIF" target="_blank"><img src="293.GIF" alt="Resim 293" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="292.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="292.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="331.mp4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="331.mp4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="291.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="291.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="330.GIF" target="_blank"><img data-src="330.GIF" alt="Resim 330" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="329.GIF" target="_blank"><img data-src="329.GIF" alt="Resim 329" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="328.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="328.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="290.GIF" target="_blank"><img src="290.GIF" alt="Resim 290" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="289.GIF" target="_blank"><img src="289.GIF" alt="Resim 289" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="288.GIF" target="_blank"><img src="288.GIF" alt="Resim 288" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="287.GIF" target="_blank"><img src="287.GIF" alt="Resim 287" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="286.GIF" target="_blank"><img src="286.GIF" alt="Resim 286" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="285.GIF" target="_blank"><img src="285.GIF" alt="Resim 285" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="284.GIF" target="_blank"><img src="284.GIF" alt="Resim 284" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="283.GIF" target="_blank"><img src="283.GIF" alt="Resim 283" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="282.GIF" target="_blank"><img src="282.GIF" alt="Resim 282" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="281.GIF" target="_blank"><img src="281.GIF" alt="Resim 281" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="280.GIF" target="_blank"><img src="280.GIF" alt="Resim 280" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="279.MOV" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="279.MOV#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="327.GIF" target="_blank"><img data-src="327.GIF" alt="Resim 327" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="326.GIF" target="_blank"><img data-src="326.GIF" alt="Resim 326" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="325.GIF" target="_blank"><img data-src="325.GIF" alt="Resim 325" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="324.GIF" target="_blank"><img data-src="324.GIF" alt="Resim 324" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="323.GIF" target="_blank"><img data-src="323.GIF" alt="Resim 323" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="322.GIF" target="_blank"><img data-src="322.GIF" alt="Resim 322" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="321.GIF" target="_blank"><img data-src="321.GIF" alt="Resim 321" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="320.GIF" target="_blank"><img data-src="320.GIF" alt="Resim 320" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="319.GIF" target="_blank"><img data-src="319.GIF" alt="Resim 319" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="318.GIF" target="_blank"><img data-src="318.GIF" alt="Resim 318" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="317.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="317.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="278.MOV" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="278.MOV#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="316.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="316.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="277.MOV" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="277.MOV#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="315.GIF" target="_blank"><img data-src="315.GIF" alt="Resim 315" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="314.GIF" target="_blank"><img data-src="314.GIF" alt="Resim 314" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="313.GIF" target="_blank"><img data-src="313.GIF" alt="Resim 313" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="312.GIF" target="_blank"><img data-src="312.GIF" alt="Resim 312" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="311.GIF" target="_blank"><img data-src="311.GIF" alt="Resim 311" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="310.GIF" target="_blank"><img data-src="310.GIF" alt="Resim 310" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="309.GIF" target="_blank"><img data-src="309.GIF" alt="Resim 309" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="308.GIF" target="_blank"><img data-src="308.GIF" alt="Resim 308" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="307.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="307.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="276.MOV" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="276.MOV#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="306.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="306.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="275.MOV" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="275.MOV#t=47" type="video/mp4">
+      <a class="gallery-card" href="305.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="305.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="274.GIF" target="_blank"><img src="274.GIF" alt="Resim 274" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="273.GIF" target="_blank"><img src="273.GIF" alt="Resim 273" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="272.GIF" target="_blank"><img src="272.GIF" alt="Resim 272" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="271.GIF" target="_blank"><img src="271.GIF" alt="Resim 271" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="270.GIF" target="_blank"><img src="270.GIF" alt="Resim 270" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="269.GIF" target="_blank"><img src="269.GIF" alt="Resim 269" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="268.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="268.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="304.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="304.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="267.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="267.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="303.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="303.MP4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="266.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="266.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="302.jpg" target="_blank"><img data-src="302.jpg" alt="Resim 302" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="301.GIF" target="_blank"><img data-src="301.GIF" alt="Resim 301" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="300.GIF" target="_blank"><img data-src="300.GIF" alt="Resim 300" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="299.GIF" target="_blank"><img data-src="299.GIF" alt="Resim 299" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="298.GIF" target="_blank"><img data-src="298.GIF" alt="Resim 298" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="297.GIF" target="_blank"><img data-src="297.GIF" alt="Resim 297" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="296.GIF" target="_blank"><img data-src="296.GIF" alt="Resim 296" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="295.GIF" target="_blank"><img data-src="295.GIF" alt="Resim 295" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="294.GIF" target="_blank"><img data-src="294.GIF" alt="Resim 294" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="293.GIF" target="_blank"><img data-src="293.GIF" alt="Resim 293" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="292.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="292.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="265.GIF" target="_blank"><img src="265.GIF" alt="Resim 265" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="264.GIF" target="_blank"><img src="264.GIF" alt="Resim 264" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="263.PNG" target="_blank"><img src="263.PNG" alt="Resim 263" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="262.PNG" target="_blank"><img src="262.PNG" alt="Resim 262" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="261.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="261.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="291.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="291.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="260.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="260.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="290.GIF" target="_blank"><img data-src="290.GIF" alt="Resim 290" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="289.GIF" target="_blank"><img data-src="289.GIF" alt="Resim 289" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="288.GIF" target="_blank"><img data-src="288.GIF" alt="Resim 288" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="287.GIF" target="_blank"><img data-src="287.GIF" alt="Resim 287" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="286.GIF" target="_blank"><img data-src="286.GIF" alt="Resim 286" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="285.GIF" target="_blank"><img data-src="285.GIF" alt="Resim 285" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="284.GIF" target="_blank"><img data-src="284.GIF" alt="Resim 284" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="283.GIF" target="_blank"><img data-src="283.GIF" alt="Resim 283" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="282.GIF" target="_blank"><img data-src="282.GIF" alt="Resim 282" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="281.GIF" target="_blank"><img data-src="281.GIF" alt="Resim 281" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="280.GIF" target="_blank"><img data-src="280.GIF" alt="Resim 280" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="279.MOV" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="279.MOV#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="259.GIF" target="_blank"><img src="259.GIF" alt="Resim 259" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="258.GIF" target="_blank"><img src="258.GIF" alt="Resim 258" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="257.GIF" target="_blank"><img src="257.GIF" alt="Resim 257" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="256.GIF" target="_blank"><img src="256.GIF" alt="Resim 256" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="255.GIF" target="_blank"><img src="255.GIF" alt="Resim 255" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="254.GIF" target="_blank"><img src="254.GIF" alt="Resim 254" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="253.GIF" target="_blank"><img src="253.GIF" alt="Resim 253" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="252.GIF" target="_blank"><img src="252.GIF" alt="Resim 252" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="251.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="251.MP4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="278.MOV" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="278.MOV#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="250.GIF" target="_blank"><img src="250.GIF" alt="Resim 250" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="249.GIF" target="_blank"><img src="249.GIF" alt="Resim 249" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="248.GIF" target="_blank"><img src="248.GIF" alt="Resim 248" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="247.GIF" target="_blank"><img src="247.GIF" alt="Resim 247" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="246.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="246.MP4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="277.MOV" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="277.MOV#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="245.GIF" target="_blank"><img src="245.GIF" alt="Resim 245" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="244.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="244.MP4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="276.MOV" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="276.MOV#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="243.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="243.MP4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="275.MOV" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="275.MOV#t=47" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="242.GIF" target="_blank"><img src="242.GIF" alt="Resim 242" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="241.GIF" target="_blank"><img src="241.GIF" alt="Resim 241" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="240.GIF" target="_blank"><img src="240.GIF" alt="Resim 240" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="239.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="239.MP4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="274.GIF" target="_blank"><img data-src="274.GIF" alt="Resim 274" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="273.GIF" target="_blank"><img data-src="273.GIF" alt="Resim 273" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="272.GIF" target="_blank"><img data-src="272.GIF" alt="Resim 272" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="271.GIF" target="_blank"><img data-src="271.GIF" alt="Resim 271" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="270.GIF" target="_blank"><img data-src="270.GIF" alt="Resim 270" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="269.GIF" target="_blank"><img data-src="269.GIF" alt="Resim 269" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="268.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="268.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="238.GIF" target="_blank"><img src="238.GIF" alt="Resim 238" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="237.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="237.MP4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="267.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="267.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="236.GIF" target="_blank"><img src="236.GIF" alt="Resim 236" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="235.GIF" target="_blank"><img src="235.GIF" alt="Resim 235" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="234.GIF" target="_blank"><img src="234.GIF" alt="Resim 234" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="233.GIF" target="_blank"><img src="233.GIF" alt="Resim 233" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="232.GIF" target="_blank"><img src="232.GIF" alt="Resim 232" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="231.GIF" target="_blank"><img src="231.GIF" alt="Resim 231" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="230.GIF" target="_blank"><img src="230.GIF" alt="Resim 230" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="229.GIF" target="_blank"><img src="229.GIF" alt="Resim 229" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="228.GIF" target="_blank"><img src="228.GIF" alt="Resim 228" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="227.GIF" target="_blank"><img src="227.GIF" alt="Resim 227" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="226.GIF" target="_blank"><img src="226.GIF" alt="Resim 226" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="225.GIF" target="_blank"><img src="225.GIF" alt="Resim 225" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="224.GIF" target="_blank"><img src="224.GIF" alt="Resim 224" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="223.GIF" target="_blank"><img src="223.GIF" alt="Resim 223" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="222.GIF" target="_blank"><img src="222.GIF" alt="Resim 222" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="221.GIF" target="_blank"><img src="221.GIF" alt="Resim 221" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="220.GIF" target="_blank"><img src="220.GIF" alt="Resim 220" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="219.GIF" target="_blank"><img src="219.GIF" alt="Resim 219" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="218.GIF" target="_blank"><img src="218.GIF" alt="Resim 218" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="217.GIF" target="_blank"><img src="217.GIF" alt="Resim 217" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="216.GIF" target="_blank"><img src="216.GIF" alt="Resim 216" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="215.GIF" target="_blank"><img src="215.GIF" alt="Resim 215" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="214.GIF" target="_blank"><img src="214.GIF" alt="Resim 214" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="213.GIF" target="_blank"><img src="213.GIF" alt="Resim 213" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="209.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="209.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="266.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="266.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="210.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="210.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="265.GIF" target="_blank"><img data-src="265.GIF" alt="Resim 265" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="264.GIF" target="_blank"><img data-src="264.GIF" alt="Resim 264" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="263.PNG" target="_blank"><img data-src="263.PNG" alt="Resim 263" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="262.PNG" target="_blank"><img data-src="262.PNG" alt="Resim 262" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="261.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="261.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="211.GIF" target="_blank"><img src="211.GIF" alt="Resim 211" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="212.GIF" target="_blank"><img src="212.GIF" alt="Resim 212" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="193.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="193.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="260.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="260.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="194.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="194.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="259.GIF" target="_blank"><img data-src="259.GIF" alt="Resim 259" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="258.GIF" target="_blank"><img data-src="258.GIF" alt="Resim 258" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="257.GIF" target="_blank"><img data-src="257.GIF" alt="Resim 257" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="256.GIF" target="_blank"><img data-src="256.GIF" alt="Resim 256" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="255.GIF" target="_blank"><img data-src="255.GIF" alt="Resim 255" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="254.GIF" target="_blank"><img data-src="254.GIF" alt="Resim 254" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="253.GIF" target="_blank"><img data-src="253.GIF" alt="Resim 253" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="252.GIF" target="_blank"><img data-src="252.GIF" alt="Resim 252" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="251.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="251.MP4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="195.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="195.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="250.GIF" target="_blank"><img data-src="250.GIF" alt="Resim 250" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="249.GIF" target="_blank"><img data-src="249.GIF" alt="Resim 249" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="248.GIF" target="_blank"><img data-src="248.GIF" alt="Resim 248" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="247.GIF" target="_blank"><img data-src="247.GIF" alt="Resim 247" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="246.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="246.MP4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="196.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="196.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="245.GIF" target="_blank"><img data-src="245.GIF" alt="Resim 245" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="244.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="244.MP4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="197.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="197.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="243.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="243.MP4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="198.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="198.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="242.GIF" target="_blank"><img data-src="242.GIF" alt="Resim 242" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="241.GIF" target="_blank"><img data-src="241.GIF" alt="Resim 241" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="240.GIF" target="_blank"><img data-src="240.GIF" alt="Resim 240" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="239.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="239.MP4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="199.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="199.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="238.GIF" target="_blank"><img data-src="238.GIF" alt="Resim 238" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="237.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="237.MP4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="200.GIF" target="_blank"><img src="200.GIF" alt="Resim 200" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="201.GIF" target="_blank"><img src="201.GIF" alt="Resim 201" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="202.GIF" target="_blank"><img src="202.GIF" alt="Resim 202" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="203.GIF" target="_blank"><img src="203.GIF" alt="Resim 203" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="204.GIF" target="_blank"><img src="204.GIF" alt="Resim 204" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="205.GIF" target="_blank"><img src="205.GIF" alt="Resim 205" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="206.GIF" target="_blank"><img src="206.GIF" alt="Resim 206" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="207.GIF" target="_blank"><img src="207.GIF" alt="Resim 207" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="208.GIF" target="_blank"><img src="208.GIF" alt="Resim 208" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="156.mp4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="156.mp4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="236.GIF" target="_blank"><img data-src="236.GIF" alt="Resim 236" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="235.GIF" target="_blank"><img data-src="235.GIF" alt="Resim 235" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="234.GIF" target="_blank"><img data-src="234.GIF" alt="Resim 234" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="233.GIF" target="_blank"><img data-src="233.GIF" alt="Resim 233" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="232.GIF" target="_blank"><img data-src="232.GIF" alt="Resim 232" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="231.GIF" target="_blank"><img data-src="231.GIF" alt="Resim 231" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="230.GIF" target="_blank"><img data-src="230.GIF" alt="Resim 230" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="229.GIF" target="_blank"><img data-src="229.GIF" alt="Resim 229" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="228.GIF" target="_blank"><img data-src="228.GIF" alt="Resim 228" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="227.GIF" target="_blank"><img data-src="227.GIF" alt="Resim 227" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="226.GIF" target="_blank"><img data-src="226.GIF" alt="Resim 226" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="225.GIF" target="_blank"><img data-src="225.GIF" alt="Resim 225" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="224.GIF" target="_blank"><img data-src="224.GIF" alt="Resim 224" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="223.GIF" target="_blank"><img data-src="223.GIF" alt="Resim 223" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="222.GIF" target="_blank"><img data-src="222.GIF" alt="Resim 222" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="221.GIF" target="_blank"><img data-src="221.GIF" alt="Resim 221" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="220.GIF" target="_blank"><img data-src="220.GIF" alt="Resim 220" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="219.GIF" target="_blank"><img data-src="219.GIF" alt="Resim 219" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="218.GIF" target="_blank"><img data-src="218.GIF" alt="Resim 218" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="217.GIF" target="_blank"><img data-src="217.GIF" alt="Resim 217" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="216.GIF" target="_blank"><img data-src="216.GIF" alt="Resim 216" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="215.GIF" target="_blank"><img data-src="215.GIF" alt="Resim 215" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="214.GIF" target="_blank"><img data-src="214.GIF" alt="Resim 214" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="213.GIF" target="_blank"><img data-src="213.GIF" alt="Resim 213" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="209.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="209.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="157.mp4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="157.mp4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="210.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="210.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="158.mp4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="158.mp4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="211.GIF" target="_blank"><img data-src="211.GIF" alt="Resim 211" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="212.GIF" target="_blank"><img data-src="212.GIF" alt="Resim 212" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="193.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="193.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="159.mp4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="159.mp4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="194.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="194.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="160.mp4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="160.mp4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="195.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="195.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="161.mp4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="161.mp4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="196.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="196.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="162.mp4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="162.mp4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="197.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="197.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="163.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="163.MP4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="198.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="198.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="164.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="164.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="199.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="199.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="165.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="165.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="200.GIF" target="_blank"><img data-src="200.GIF" alt="Resim 200" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="201.GIF" target="_blank"><img data-src="201.GIF" alt="Resim 201" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="202.GIF" target="_blank"><img data-src="202.GIF" alt="Resim 202" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="203.GIF" target="_blank"><img data-src="203.GIF" alt="Resim 203" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="204.GIF" target="_blank"><img data-src="204.GIF" alt="Resim 204" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="205.GIF" target="_blank"><img data-src="205.GIF" alt="Resim 205" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="206.GIF" target="_blank"><img data-src="206.GIF" alt="Resim 206" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="207.GIF" target="_blank"><img data-src="207.GIF" alt="Resim 207" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="208.GIF" target="_blank"><img data-src="208.GIF" alt="Resim 208" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="156.mp4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="156.mp4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="166.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="166.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="157.mp4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="157.mp4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="167.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="167.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="158.mp4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="158.mp4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="168.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="168.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="159.mp4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="159.mp4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="169.mov" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="169.mov#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="160.mp4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="160.mp4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="170.GIF" target="_blank"><img src="170.GIF" alt="Resim 170" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="171.GIF" target="_blank"><img src="171.GIF" alt="Resim 171" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="172.GIF" target="_blank"><img src="172.GIF" alt="Resim 172" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="173.GIF" target="_blank"><img src="173.GIF" alt="Resim 173" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="174.GIF" target="_blank"><img src="174.GIF" alt="Resim 174" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="175.GIF" target="_blank"><img src="175.GIF" alt="Resim 175" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="176.GIF" target="_blank"><img src="176.GIF" alt="Resim 176" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="177.GIF" target="_blank"><img src="177.GIF" alt="Resim 177" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="178.GIF" target="_blank"><img src="178.GIF" alt="Resim 178" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="179.GIF" target="_blank"><img src="179.GIF" alt="Resim 179" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="180.GIF" target="_blank"><img src="180.GIF" alt="Resim 180" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="181.GIF" target="_blank"><img src="181.GIF" alt="Resim 181" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="182.GIF" target="_blank"><img src="182.GIF" alt="Resim 182" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="183.GIF" target="_blank"><img src="183.GIF" alt="Resim 183" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="184.GIF" target="_blank"><img src="184.GIF" alt="Resim 184" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="185.GIF" target="_blank"><img src="185.GIF" alt="Resim 185" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="186.GIF" target="_blank"><img src="186.GIF" alt="Resim 186" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="187.GIF" target="_blank"><img src="187.GIF" alt="Resim 187" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="188.GIF" target="_blank"><img src="188.GIF" alt="Resim 188" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="189.GIF" target="_blank"><img src="189.GIF" alt="Resim 189" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="190.GIF" target="_blank"><img src="190.GIF" alt="Resim 190" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="191.GIF" target="_blank"><img src="191.GIF" alt="Resim 191" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="192.GIF" target="_blank"><img src="192.GIF" alt="Resim 192" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="151.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="151.MP4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="161.mp4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="161.mp4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="152.GIF" target="_blank"><img src="152.GIF" alt="Resim 152" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="153.GIF" target="_blank"><img src="153.GIF" alt="Resim 153" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="154.GIF" target="_blank"><img src="154.GIF" alt="Resim 154" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="155.GIF" target="_blank"><img src="155.GIF" alt="Resim 155" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="145.mp4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="145.mp4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="162.mp4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="162.mp4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="146.GIF" target="_blank"><img src="146.GIF" alt="Resim 146" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="144.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="144.MP4#t=6.6" type="video/mp4">
+      <a class="gallery-card" href="163.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="163.MP4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="137.GIF" target="_blank"><img src="137.GIF" alt="Resim 137" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="138.GIF" target="_blank"><img src="138.GIF" alt="Resim 138" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="139.jpg" target="_blank"><img src="139.jpg" alt="Resim 139" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="140.jpg" target="_blank"><img src="140.jpg" alt="Resim 140" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="141.JPG" target="_blank"><img src="141.JPG" alt="Resim 141" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="147.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="147.MP4#t=232.5" type="video/mp4">
+      <a class="gallery-card" href="164.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="164.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="148.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="148.MP4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="165.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="165.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="149.mp4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="149.mp4#t=304" type="video/mp4">
+      <a class="gallery-card" href="166.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="166.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="150.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="150.MP4#t=96" type="video/mp4">
+      <a class="gallery-card" href="167.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="167.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="106.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="106.MP4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="168.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="168.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="110.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="110.MP4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="169.mov" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="169.mov#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="114.MP4" target="_blank"><video preload="metadata" muted playsinline>
-          <source src="114.MP4#t=0.5" type="video/mp4">
+      <a class="gallery-card" href="170.GIF" target="_blank"><img data-src="170.GIF" alt="Resim 170" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="171.GIF" target="_blank"><img data-src="171.GIF" alt="Resim 171" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="172.GIF" target="_blank"><img data-src="172.GIF" alt="Resim 172" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="173.GIF" target="_blank"><img data-src="173.GIF" alt="Resim 173" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="174.GIF" target="_blank"><img data-src="174.GIF" alt="Resim 174" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="175.GIF" target="_blank"><img data-src="175.GIF" alt="Resim 175" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="176.GIF" target="_blank"><img data-src="176.GIF" alt="Resim 176" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="177.GIF" target="_blank"><img data-src="177.GIF" alt="Resim 177" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="178.GIF" target="_blank"><img data-src="178.GIF" alt="Resim 178" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="179.GIF" target="_blank"><img data-src="179.GIF" alt="Resim 179" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="180.GIF" target="_blank"><img data-src="180.GIF" alt="Resim 180" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="181.GIF" target="_blank"><img data-src="181.GIF" alt="Resim 181" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="182.GIF" target="_blank"><img data-src="182.GIF" alt="Resim 182" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="183.GIF" target="_blank"><img data-src="183.GIF" alt="Resim 183" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="184.GIF" target="_blank"><img data-src="184.GIF" alt="Resim 184" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="185.GIF" target="_blank"><img data-src="185.GIF" alt="Resim 185" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="186.GIF" target="_blank"><img data-src="186.GIF" alt="Resim 186" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="187.GIF" target="_blank"><img data-src="187.GIF" alt="Resim 187" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="188.GIF" target="_blank"><img data-src="188.GIF" alt="Resim 188" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="189.GIF" target="_blank"><img data-src="189.GIF" alt="Resim 189" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="190.GIF" target="_blank"><img data-src="190.GIF" alt="Resim 190" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="191.GIF" target="_blank"><img data-src="191.GIF" alt="Resim 191" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="192.GIF" target="_blank"><img data-src="192.GIF" alt="Resim 192" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="151.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="151.MP4#t=0.5" type="video/mp4">
         </video></a>
-      <a class="gallery-card" href="107.GIF" target="_blank"><img src="107.GIF" alt="Resim 107" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="108.GIF" target="_blank"><img src="108.GIF" alt="Resim 108" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="109.GIF" target="_blank"><img src="109.GIF" alt="Resim 109" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="111.GIF" target="_blank"><img src="111.GIF" alt="Resim 111" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="112.GIF" target="_blank"><img src="112.GIF" alt="Resim 112" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="113.GIF" target="_blank"><img src="113.GIF" alt="Resim 113" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="115.GIF" target="_blank"><img src="115.GIF" alt="Resim 115" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="116.GIF" target="_blank"><img src="116.GIF" alt="Resim 116" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="118.GIF" target="_blank"><img src="118.GIF" alt="Resim 118" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="119.GIF" target="_blank"><img src="119.GIF" alt="Resim 119" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="120.GIF" target="_blank"><img src="120.GIF" alt="Resim 120" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="121.GIF" target="_blank"><img src="121.GIF" alt="Resim 121" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="122.GIF" target="_blank"><img src="122.GIF" alt="Resim 122" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="123.GIF" target="_blank"><img src="123.GIF" alt="Resim 123" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="124.GIF" target="_blank"><img src="124.GIF" alt="Resim 124" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="125.GIF" target="_blank"><img src="125.GIF" alt="Resim 125" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="126.GIF" target="_blank"><img src="126.GIF" alt="Resim 126" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="127.GIF" target="_blank"><img src="127.GIF" alt="Resim 127" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="128.GIF" target="_blank"><img src="128.GIF" alt="Resim 128" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="129.GIF" target="_blank"><img src="129.GIF" alt="Resim 129" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="130.GIF" target="_blank"><img src="130.GIF" alt="Resim 130" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="131.GIF" target="_blank"><img src="131.GIF" alt="Resim 131" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="132.GIF" target="_blank"><img src="132.GIF" alt="Resim 132" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="133.GIF" target="_blank"><img src="133.GIF" alt="Resim 133" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="134.GIF" target="_blank"><img src="134.GIF" alt="Resim 134" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="135.GIF" target="_blank"><img src="135.GIF" alt="Resim 135" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="136.GIF" target="_blank"><img src="136.GIF" alt="Resim 136" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="142.GIF" target="_blank"><img src="142.GIF" alt="Resim 142" loading="lazy"
-          decoding="async"></a>
-      <a class="gallery-card" href="143.GIF" target="_blank"><img src="143.GIF" alt="Resim 143" loading="lazy"
-          decoding="async"></a>
+      <a class="gallery-card" href="152.GIF" target="_blank"><img data-src="152.GIF" alt="Resim 152" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="153.GIF" target="_blank"><img data-src="153.GIF" alt="Resim 153" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="154.GIF" target="_blank"><img data-src="154.GIF" alt="Resim 154" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="155.GIF" target="_blank"><img data-src="155.GIF" alt="Resim 155" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="145.mp4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="145.mp4#t=0.5" type="video/mp4">
+        </video></a>
+      <a class="gallery-card" href="146.GIF" target="_blank"><img data-src="146.GIF" alt="Resim 146" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="144.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="144.MP4#t=6.6" type="video/mp4">
+        </video></a>
+      <a class="gallery-card" href="137.GIF" target="_blank"><img data-src="137.GIF" alt="Resim 137" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="138.GIF" target="_blank"><img data-src="138.GIF" alt="Resim 138" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="139.jpg" target="_blank"><img data-src="139.jpg" alt="Resim 139" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="140.jpg" target="_blank"><img data-src="140.jpg" alt="Resim 140" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="141.JPG" target="_blank"><img data-src="141.JPG" alt="Resim 141" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="147.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="147.MP4#t=232.5" type="video/mp4">
+        </video></a>
+      <a class="gallery-card" href="148.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="148.MP4#t=0.5" type="video/mp4">
+        </video></a>
+      <a class="gallery-card" href="149.mp4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="149.mp4#t=304" type="video/mp4">
+        </video></a>
+      <a class="gallery-card" href="150.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="150.MP4#t=96" type="video/mp4">
+        </video></a>
+      <a class="gallery-card" href="106.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="106.MP4#t=0.5" type="video/mp4">
+        </video></a>
+      <a class="gallery-card" href="110.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="110.MP4#t=0.5" type="video/mp4">
+        </video></a>
+      <a class="gallery-card" href="114.MP4" target="_blank"><video preload="none" muted playsinline>
+          <source data-src="114.MP4#t=0.5" type="video/mp4">
+        </video></a>
+      <a class="gallery-card" href="107.GIF" target="_blank"><img data-src="107.GIF" alt="Resim 107" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="108.GIF" target="_blank"><img data-src="108.GIF" alt="Resim 108" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="109.GIF" target="_blank"><img data-src="109.GIF" alt="Resim 109" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="111.GIF" target="_blank"><img data-src="111.GIF" alt="Resim 111" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="112.GIF" target="_blank"><img data-src="112.GIF" alt="Resim 112" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="113.GIF" target="_blank"><img data-src="113.GIF" alt="Resim 113" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="115.GIF" target="_blank"><img data-src="115.GIF" alt="Resim 115" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="116.GIF" target="_blank"><img data-src="116.GIF" alt="Resim 116" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="118.GIF" target="_blank"><img data-src="118.GIF" alt="Resim 118" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="119.GIF" target="_blank"><img data-src="119.GIF" alt="Resim 119" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="120.GIF" target="_blank"><img data-src="120.GIF" alt="Resim 120" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="121.GIF" target="_blank"><img data-src="121.GIF" alt="Resim 121" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="122.GIF" target="_blank"><img data-src="122.GIF" alt="Resim 122" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="123.GIF" target="_blank"><img data-src="123.GIF" alt="Resim 123" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="124.GIF" target="_blank"><img data-src="124.GIF" alt="Resim 124" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="125.GIF" target="_blank"><img data-src="125.GIF" alt="Resim 125" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="126.GIF" target="_blank"><img data-src="126.GIF" alt="Resim 126" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="127.GIF" target="_blank"><img data-src="127.GIF" alt="Resim 127" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="128.GIF" target="_blank"><img data-src="128.GIF" alt="Resim 128" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="129.GIF" target="_blank"><img data-src="129.GIF" alt="Resim 129" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="130.GIF" target="_blank"><img data-src="130.GIF" alt="Resim 130" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="131.GIF" target="_blank"><img data-src="131.GIF" alt="Resim 131" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="132.GIF" target="_blank"><img data-src="132.GIF" alt="Resim 132" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="133.GIF" target="_blank"><img data-src="133.GIF" alt="Resim 133" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="134.GIF" target="_blank"><img data-src="134.GIF" alt="Resim 134" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="135.GIF" target="_blank"><img data-src="135.GIF" alt="Resim 135" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="136.GIF" target="_blank"><img data-src="136.GIF" alt="Resim 136" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="142.GIF" target="_blank"><img data-src="142.GIF" alt="Resim 142" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="143.GIF" target="_blank"><img data-src="143.GIF" alt="Resim 143" class="lazy-media" loading="lazy" decoding="async"></a>
     </div>
   </main>
-
   <div class="lightbox" id="lightbox">
     <div class="lightbox-controls">
       <button class="lightbox-btn" id="lightboxCloseBtn" title="Kapat (Esc)">✕</button>
@@ -1130,9 +936,7 @@
       </div>
     </div>
   </div>
-
   <button class="back-top-btn" id="backTopBtn" title="Yukarı Çık">▲</button>
-
   <script>
     sessionStorage.removeItem('stayOnHome');
     document.addEventListener('DOMContentLoaded', () => {
@@ -1146,16 +950,13 @@
       const prevBtn = document.getElementById('lightboxPrevBtn');
       const nextBtn = document.getElementById('lightboxNextBtn');
       const backTopBtn = document.getElementById('backTopBtn');
-
       let currentIndex = 0;
       const mediaItems = [];
-
       cards.forEach((card) => {
         const href = card.getAttribute('href');
         if (!href) return;
         const isVideo = href.match(/\.(mp4|MP4|mov|MOV)($|\?|#)/i);
         const isImage = href.match(/\.(gif|GIF|jpg|JPG|png|PNG|jpeg|JPEG|webp)($|\?|#)/i);
-
         if (isVideo || isImage) {
           card.classList.add('lightbox-trigger');
           if (isVideo) card.classList.add('is-video');
@@ -1171,10 +972,51 @@
           card.addEventListener('click', (e) => { e.preventDefault(); openLightbox(itemIndex); });
         }
       });
+      // High-performance Lazy Media Loader (No External Thumbnail Files)
+      const lazyObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const card = entry.target;
+          observer.unobserve(card);
+
+          // Lazy load video metadata & preview frame
+          const video = card.querySelector('video');
+          if (video) {
+            const source = video.querySelector('source');
+            if (source && source.dataset.src) {
+              source.src = source.dataset.src;
+              source.removeAttribute('data-src');
+            }
+            video.preload = 'metadata';
+            video.load();
+            video.addEventListener('loadeddata', () => {
+              video.classList.add('is-loaded');
+            }, { once: true });
+            setTimeout(() => video.classList.add('is-loaded'), 2500);
+          }
+
+          // Lazy load image (GIF / JPG / PNG)
+          const img = card.querySelector('img.lazy-media');
+          if (img && img.dataset.src) {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            if (img.complete) {
+              img.classList.add('is-loaded');
+            } else {
+              img.addEventListener('load', () => img.classList.add('is-loaded'), { once: true });
+              img.addEventListener('error', () => img.classList.add('is-loaded'), { once: true });
+            }
+          }
+        });
+      }, {
+        rootMargin: '350px 0px',
+        threshold: 0.01
+      });
+
+      cards.forEach(card => lazyObserver.observe(card));
 
       const totalBadge = document.getElementById('totalBadge');
       if (totalBadge) totalBadge.textContent = `${mediaItems.length} Medya`;
-
       const searchInput = document.getElementById('searchInput');
       if (searchInput) {
         searchInput.addEventListener('input', () => {
@@ -1189,7 +1031,6 @@
           if (totalBadge) totalBadge.textContent = q ? `${visible} / ${cards.length}` : `${mediaItems.length} Medya`;
         });
       }
-
       function cleanupLightboxMedia() {
         const activeVideo = lightboxMediaContainer.querySelector('video');
         if (activeVideo) {
@@ -1199,7 +1040,6 @@
         }
         lightboxMediaContainer.innerHTML = '';
       }
-
       function openLightbox(index) {
         if (index < 0 || index >= mediaItems.length) return;
         currentIndex = index;
@@ -1225,20 +1065,16 @@
         lightbox.classList.add('active');
         document.body.style.overflow = 'hidden';
       }
-
       function closeLightbox() {
         lightbox.classList.remove('active');
         document.body.style.overflow = '';
         cleanupLightboxMedia();
       }
-
       function showNext() { openLightbox((currentIndex + 1) % mediaItems.length); }
       function showPrev() { openLightbox((currentIndex - 1 + mediaItems.length) % mediaItems.length); }
-
       if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
       if (nextBtn) nextBtn.addEventListener('click', showNext);
       if (prevBtn) prevBtn.addEventListener('click', showPrev);
-
       lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
       document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('active')) return;
@@ -1246,11 +1082,9 @@
         if (e.key === 'ArrowRight') showNext();
         if (e.key === 'ArrowLeft') showPrev();
       });
-
       window.addEventListener('scroll', () => { backTopBtn.classList.toggle('visible', window.scrollY > 400); });
       backTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     });
   </script>
 </body>
-
 </html>
