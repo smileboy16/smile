@@ -283,7 +283,21 @@
       object-fit: cover;
       display: block;
       pointer-events: none;
-      transition: transform 0.4s ease;
+      transition: opacity 0.35s ease, transform 0.4s ease;
+    }
+
+    .gallery-card.is-video {
+      background: radial-gradient(circle at center, #1e293b 0%, #0b0f19 100%);
+    }
+
+    .gallery-card video,
+    .gallery-card img.lazy-media {
+      opacity: 0;
+    }
+
+    .gallery-card video.is-loaded,
+    .gallery-card img.lazy-media.is-loaded {
+      opacity: 1;
     }
 
     .gallery-card:hover img,
@@ -621,116 +635,116 @@
         <div class="external-card-icon">🌐</div>
         <div class="external-card-title">Video 12</div>
       </a>
-      <a class="gallery-card" href="9.gif" target="_blank"><img src="9.gif" alt="Resim 9" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="10.gif" target="_blank"><img src="10.gif" alt="Resim 10" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="11.gif" target="_blank"><img src="11.gif" alt="Resim 11" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="12.gif" target="_blank"><img src="12.gif" alt="Resim 12" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="13.gif" target="_blank"><img src="13.gif" alt="Resim 13" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="14.gif" target="_blank"><img src="14.gif" alt="Resim 14" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="15.gif" target="_blank"><img src="15.gif" alt="Resim 15" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="16.gif" target="_blank"><img src="16.gif" alt="Resim 16" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="42.gif" target="_blank"><img src="42.gif" alt="Resim 42" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="43.gif" target="_blank"><img src="43.gif" alt="Resim 43" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="44.gif" target="_blank"><img src="44.gif" alt="Resim 44" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="61.gif" target="_blank"><img src="61.gif" alt="Resim 61" loading="lazy" decoding="async"></a>
-      <div class="gallery-card iframe-card"><iframe src="https://www.boyfriendtv.com/embed/306112/61411/600/450/" width="600" height="450" frameborder="0" scrolling="no" loading="lazy"></iframe></div>
-      <a class="gallery-card" href="62.gif" target="_blank"><img src="62.gif" alt="Resim 62" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="63.gif" target="_blank"><img src="63.gif" alt="Resim 63" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="64.gif" target="_blank"><img src="64.gif" alt="Resim 64" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="65.gif" target="_blank"><img src="65.gif" alt="Resim 65" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="66.gif" target="_blank"><img src="66.gif" alt="Resim 66" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="67.gif" target="_blank"><img src="67.gif" alt="Resim 67" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="68.gif" target="_blank"><img src="68.gif" alt="Resim 68" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="69.gif" target="_blank"><img src="69.gif" alt="Resim 69" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="70.gif" target="_blank"><img src="70.gif" alt="Resim 70" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="71.gif" target="_blank"><img src="71.gif" alt="Resim 71" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="72.gif" target="_blank"><img src="72.gif" alt="Resim 72" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="73.gif" target="_blank"><img src="73.gif" alt="Resim 73" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="74.gif" target="_blank"><img src="74.gif" alt="Resim 74" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="75.gif" target="_blank"><img src="75.gif" alt="Resim 75" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="76.gif" target="_blank"><img src="76.gif" alt="Resim 76" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="77.gif" target="_blank"><img src="77.gif" alt="Resim 77" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="78.gif" target="_blank"><img src="78.gif" alt="Resim 78" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="79.gif" target="_blank"><img src="79.gif" alt="Resim 79" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="80.gif" target="_blank"><img src="80.gif" alt="Resim 80" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="81.gif" target="_blank"><img src="81.gif" alt="Resim 81" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="82.gif" target="_blank"><img src="82.gif" alt="Resim 82" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="83.gif" target="_blank"><img src="83.gif" alt="Resim 83" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="84.gif" target="_blank"><img src="84.gif" alt="Resim 84" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="85.gif" target="_blank"><img src="85.gif" alt="Resim 85" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="86.gif" target="_blank"><img src="86.gif" alt="Resim 86" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="87.gif" target="_blank"><img src="87.gif" alt="Resim 87" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="88.gif" target="_blank"><img src="88.gif" alt="Resim 88" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="89.gif" target="_blank"><img src="89.gif" alt="Resim 89" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="90.gif" target="_blank"><img src="90.gif" alt="Resim 90" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="91.gif" target="_blank"><img src="91.gif" alt="Resim 91" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="92.gif" target="_blank"><img src="92.gif" alt="Resim 92" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="93.gif" target="_blank"><img src="93.gif" alt="Resim 93" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="94.gif" target="_blank"><img src="94.gif" alt="Resim 94" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="95.gif" target="_blank"><img src="95.gif" alt="Resim 95" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="96.gif" target="_blank"><img src="96.gif" alt="Resim 96" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="97.gif" target="_blank"><img src="97.gif" alt="Resim 97" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="98.gif" target="_blank"><img src="98.gif" alt="Resim 98" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="99.jpg" target="_blank"><img src="99.jpg" alt="Resim 99" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="100.gif" target="_blank"><img src="100.gif" alt="Resim 100" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="101.gif" target="_blank"><img src="101.gif" alt="Resim 101" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="102.gif" target="_blank"><img src="102.gif" alt="Resim 102" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="103.gif" target="_blank"><img src="103.gif" alt="Resim 103" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="104.gif" target="_blank"><img src="104.gif" alt="Resim 104" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="105.gif" target="_blank"><img src="105.gif" alt="Resim 105" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="1.jpg" target="_blank"><img src="1.jpg" alt="Resim 1" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="2.jpg" target="_blank"><img src="2.jpg" alt="Resim 2" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="3.jpg" target="_blank"><img src="3.jpg" alt="Resim 3" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="9.gif" target="_blank"><img data-src="9.gif" alt="Resim 9" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="10.gif" target="_blank"><img data-src="10.gif" alt="Resim 10" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="11.gif" target="_blank"><img data-src="11.gif" alt="Resim 11" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="12.gif" target="_blank"><img data-src="12.gif" alt="Resim 12" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="13.gif" target="_blank"><img data-src="13.gif" alt="Resim 13" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="14.gif" target="_blank"><img data-src="14.gif" alt="Resim 14" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="15.gif" target="_blank"><img data-src="15.gif" alt="Resim 15" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="16.gif" target="_blank"><img data-src="16.gif" alt="Resim 16" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="42.gif" target="_blank"><img data-src="42.gif" alt="Resim 42" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="43.gif" target="_blank"><img data-src="43.gif" alt="Resim 43" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="44.gif" target="_blank"><img data-src="44.gif" alt="Resim 44" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="61.gif" target="_blank"><img data-src="61.gif" alt="Resim 61" class="lazy-media" loading="lazy" decoding="async"></a>
+      <div class="gallery-card iframe-card"><iframe data-src="https://www.boyfriendtv.com/embed/306112/61411/600/450/" width="600" height="450" frameborder="0" scrolling="no" loading="lazy"></iframe></div>
+      <a class="gallery-card" href="62.gif" target="_blank"><img data-src="62.gif" alt="Resim 62" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="63.gif" target="_blank"><img data-src="63.gif" alt="Resim 63" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="64.gif" target="_blank"><img data-src="64.gif" alt="Resim 64" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="65.gif" target="_blank"><img data-src="65.gif" alt="Resim 65" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="66.gif" target="_blank"><img data-src="66.gif" alt="Resim 66" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="67.gif" target="_blank"><img data-src="67.gif" alt="Resim 67" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="68.gif" target="_blank"><img data-src="68.gif" alt="Resim 68" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="69.gif" target="_blank"><img data-src="69.gif" alt="Resim 69" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="70.gif" target="_blank"><img data-src="70.gif" alt="Resim 70" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="71.gif" target="_blank"><img data-src="71.gif" alt="Resim 71" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="72.gif" target="_blank"><img data-src="72.gif" alt="Resim 72" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="73.gif" target="_blank"><img data-src="73.gif" alt="Resim 73" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="74.gif" target="_blank"><img data-src="74.gif" alt="Resim 74" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="75.gif" target="_blank"><img data-src="75.gif" alt="Resim 75" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="76.gif" target="_blank"><img data-src="76.gif" alt="Resim 76" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="77.gif" target="_blank"><img data-src="77.gif" alt="Resim 77" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="78.gif" target="_blank"><img data-src="78.gif" alt="Resim 78" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="79.gif" target="_blank"><img data-src="79.gif" alt="Resim 79" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="80.gif" target="_blank"><img data-src="80.gif" alt="Resim 80" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="81.gif" target="_blank"><img data-src="81.gif" alt="Resim 81" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="82.gif" target="_blank"><img data-src="82.gif" alt="Resim 82" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="83.gif" target="_blank"><img data-src="83.gif" alt="Resim 83" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="84.gif" target="_blank"><img data-src="84.gif" alt="Resim 84" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="85.gif" target="_blank"><img data-src="85.gif" alt="Resim 85" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="86.gif" target="_blank"><img data-src="86.gif" alt="Resim 86" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="87.gif" target="_blank"><img data-src="87.gif" alt="Resim 87" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="88.gif" target="_blank"><img data-src="88.gif" alt="Resim 88" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="89.gif" target="_blank"><img data-src="89.gif" alt="Resim 89" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="90.gif" target="_blank"><img data-src="90.gif" alt="Resim 90" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="91.gif" target="_blank"><img data-src="91.gif" alt="Resim 91" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="92.gif" target="_blank"><img data-src="92.gif" alt="Resim 92" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="93.gif" target="_blank"><img data-src="93.gif" alt="Resim 93" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="94.gif" target="_blank"><img data-src="94.gif" alt="Resim 94" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="95.gif" target="_blank"><img data-src="95.gif" alt="Resim 95" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="96.gif" target="_blank"><img data-src="96.gif" alt="Resim 96" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="97.gif" target="_blank"><img data-src="97.gif" alt="Resim 97" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="98.gif" target="_blank"><img data-src="98.gif" alt="Resim 98" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="99.jpg" target="_blank"><img data-src="99.jpg" alt="Resim 99" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="100.gif" target="_blank"><img data-src="100.gif" alt="Resim 100" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="101.gif" target="_blank"><img data-src="101.gif" alt="Resim 101" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="102.gif" target="_blank"><img data-src="102.gif" alt="Resim 102" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="103.gif" target="_blank"><img data-src="103.gif" alt="Resim 103" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="104.gif" target="_blank"><img data-src="104.gif" alt="Resim 104" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="105.gif" target="_blank"><img data-src="105.gif" alt="Resim 105" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="1.jpg" target="_blank"><img data-src="1.jpg" alt="Resim 1" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="2.jpg" target="_blank"><img data-src="2.jpg" alt="Resim 2" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="3.jpg" target="_blank"><img data-src="3.jpg" alt="Resim 3" class="lazy-media" loading="lazy" decoding="async"></a>
       <a class="gallery-card" href="https://media1_g1.gayboystube.com/videos/5/c/c/e/9/5cce908c62d1e.mp4">Video 1</a>
-      <a class="gallery-card" href="4.gif" target="_blank"><img src="4.gif" alt="Resim 4" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="5.gif" target="_blank"><img src="5.gif" alt="Resim 5" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="7.gif" target="_blank"><img src="7.gif" alt="Resim 7" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="17.png" target="_blank"><img src="17.png" alt="Resim 17" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="18.png" target="_blank"><img src="18.png" alt="Resim 18" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="19.gif" target="_blank"><img src="19.gif" alt="Resim 19" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="20.png" target="_blank"><img src="20.png" alt="Resim 20" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="21.png" target="_blank"><img src="21.png" alt="Resim 21" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="22.png" target="_blank"><img src="22.png" alt="Resim 22" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="23.gif" target="_blank"><img src="23.gif" alt="Resim 23" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="24.jpg" target="_blank"><img src="24.jpg" alt="Resim 24" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="25.png" target="_blank"><img src="25.png" alt="Resim 25" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="26.png" target="_blank"><img src="26.png" alt="Resim 26" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="27.gif" target="_blank"><img src="27.gif" alt="Resim 27" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="28.png" target="_blank"><img src="28.png" alt="Resim 28" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="29.gif" target="_blank"><img src="29.gif" alt="Resim 29" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="30.gif" target="_blank"><img src="30.gif" alt="Resim 30" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="31.png" target="_blank"><img src="31.png" alt="Resim 31" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="32.jpg" target="_blank"><img src="32.jpg" alt="Resim 32" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="33.gif" target="_blank"><img src="33.gif" alt="Resim 33" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="34.jpg" target="_blank"><img src="34.jpg" alt="Resim 34" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="35.png" target="_blank"><img src="35.png" alt="Resim 35" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="36.png" target="_blank"><img src="36.png" alt="Resim 36" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="37.jpg" target="_blank"><img src="37.jpg" alt="Resim 37" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="38.jpg" target="_blank"><img src="38.jpg" alt="Resim 38" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="39.png" target="_blank"><img src="39.png" alt="Resim 39" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="40.png" target="_blank"><img src="40.png" alt="Resim 40" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="41.png" target="_blank"><img src="41.png" alt="Resim 41" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="45.png" target="_blank"><img src="45.png" alt="Resim 45" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="46.jpg" target="_blank"><img src="46.jpg" alt="Resim 46" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="47.jpg" target="_blank"><img src="47.jpg" alt="Resim 47" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="48.jpg" target="_blank"><img src="48.jpg" alt="Resim 48" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="49.jpg" target="_blank"><img src="49.jpg" alt="Resim 49" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="50.jpg" target="_blank"><img src="50.jpg" alt="Resim 50" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="51.gif" target="_blank"><img src="51.gif" alt="Resim 51" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="52.jpg" target="_blank"><img src="52.jpg" alt="Resim 52" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="53.jpg" target="_blank"><img src="53.jpg" alt="Resim 53" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="54.jpg" target="_blank"><img src="54.jpg" alt="Resim 54" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="55.jpg" target="_blank"><img src="55.jpg" alt="Resim 55" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="56.jpg" target="_blank"><img src="56.jpg" alt="Resim 56" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="57.png" target="_blank"><img src="57.png" alt="Resim 57" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="58.jpg" target="_blank"><img src="58.jpg" alt="Resim 58" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="59.gif" target="_blank"><img src="59.gif" alt="Resim 59" loading="lazy" decoding="async"></a>
-      <a class="gallery-card" href="60.gif" target="_blank"><img src="60.gif" alt="Resim 60" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="4.gif" target="_blank"><img data-src="4.gif" alt="Resim 4" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="5.gif" target="_blank"><img data-src="5.gif" alt="Resim 5" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="7.gif" target="_blank"><img data-src="7.gif" alt="Resim 7" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="17.png" target="_blank"><img data-src="17.png" alt="Resim 17" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="18.png" target="_blank"><img data-src="18.png" alt="Resim 18" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="19.gif" target="_blank"><img data-src="19.gif" alt="Resim 19" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="20.png" target="_blank"><img data-src="20.png" alt="Resim 20" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="21.png" target="_blank"><img data-src="21.png" alt="Resim 21" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="22.png" target="_blank"><img data-src="22.png" alt="Resim 22" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="23.gif" target="_blank"><img data-src="23.gif" alt="Resim 23" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="24.jpg" target="_blank"><img data-src="24.jpg" alt="Resim 24" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="25.png" target="_blank"><img data-src="25.png" alt="Resim 25" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="26.png" target="_blank"><img data-src="26.png" alt="Resim 26" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="27.gif" target="_blank"><img data-src="27.gif" alt="Resim 27" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="28.png" target="_blank"><img data-src="28.png" alt="Resim 28" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="29.gif" target="_blank"><img data-src="29.gif" alt="Resim 29" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="30.gif" target="_blank"><img data-src="30.gif" alt="Resim 30" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="31.png" target="_blank"><img data-src="31.png" alt="Resim 31" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="32.jpg" target="_blank"><img data-src="32.jpg" alt="Resim 32" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="33.gif" target="_blank"><img data-src="33.gif" alt="Resim 33" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="34.jpg" target="_blank"><img data-src="34.jpg" alt="Resim 34" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="35.png" target="_blank"><img data-src="35.png" alt="Resim 35" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="36.png" target="_blank"><img data-src="36.png" alt="Resim 36" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="37.jpg" target="_blank"><img data-src="37.jpg" alt="Resim 37" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="38.jpg" target="_blank"><img data-src="38.jpg" alt="Resim 38" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="39.png" target="_blank"><img data-src="39.png" alt="Resim 39" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="40.png" target="_blank"><img data-src="40.png" alt="Resim 40" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="41.png" target="_blank"><img data-src="41.png" alt="Resim 41" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="45.png" target="_blank"><img data-src="45.png" alt="Resim 45" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="46.jpg" target="_blank"><img data-src="46.jpg" alt="Resim 46" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="47.jpg" target="_blank"><img data-src="47.jpg" alt="Resim 47" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="48.jpg" target="_blank"><img data-src="48.jpg" alt="Resim 48" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="49.jpg" target="_blank"><img data-src="49.jpg" alt="Resim 49" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="50.jpg" target="_blank"><img data-src="50.jpg" alt="Resim 50" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="51.gif" target="_blank"><img data-src="51.gif" alt="Resim 51" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="52.jpg" target="_blank"><img data-src="52.jpg" alt="Resim 52" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="53.jpg" target="_blank"><img data-src="53.jpg" alt="Resim 53" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="54.jpg" target="_blank"><img data-src="54.jpg" alt="Resim 54" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="55.jpg" target="_blank"><img data-src="55.jpg" alt="Resim 55" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="56.jpg" target="_blank"><img data-src="56.jpg" alt="Resim 56" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="57.png" target="_blank"><img data-src="57.png" alt="Resim 57" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="58.jpg" target="_blank"><img data-src="58.jpg" alt="Resim 58" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="59.gif" target="_blank"><img data-src="59.gif" alt="Resim 59" class="lazy-media" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="60.gif" target="_blank"><img data-src="60.gif" alt="Resim 60" class="lazy-media" loading="lazy" decoding="async"></a>
       <a href="https://vk.com/video426796996_456239221" target="_blank" class="gallery-card external-card">
         <div class="external-card-icon">🌐</div>
         <div class="external-card-title">Le Chan (2004)</div>
       </a>
-      <a class="gallery-card" href="8.jpg" target="_blank"><img src="8.jpg" alt="Resim 8" loading="lazy" decoding="async"></a>
+      <a class="gallery-card" href="8.jpg" target="_blank"><img data-src="8.jpg" alt="Resim 8" class="lazy-media" loading="lazy" decoding="async"></a>
       <a href="https://www.gayboystube.com/video/1259745/study-break-gay-teen-porn" target="_blank"
         class="gallery-card external-card">
         <div class="external-card-icon">🌐</div>
@@ -833,6 +847,56 @@
           card.addEventListener('click', (e) => { e.preventDefault(); openLightbox(itemIndex); });
         }
       });
+
+      // High-performance Lazy Media Loader (No External Thumbnail Files)
+      const lazyObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const card = entry.target;
+          observer.unobserve(card);
+
+          // Lazy load video metadata & preview frame
+          const video = card.querySelector('video');
+          if (video) {
+            const source = video.querySelector('source');
+            if (source && source.dataset.src) {
+              source.src = source.dataset.src;
+              source.removeAttribute('data-src');
+            }
+            video.preload = 'metadata';
+            video.load();
+            video.addEventListener('loadeddata', () => {
+              video.classList.add('is-loaded');
+            }, { once: true });
+            setTimeout(() => video.classList.add('is-loaded'), 2500);
+          }
+
+          // Lazy load image (GIF / JPG / PNG)
+          const img = card.querySelector('img.lazy-media');
+          if (img && img.dataset.src) {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+            if (img.complete) {
+              img.classList.add('is-loaded');
+            } else {
+              img.addEventListener('load', () => img.classList.add('is-loaded'), { once: true });
+              img.addEventListener('error', () => img.classList.add('is-loaded'), { once: true });
+            }
+          }
+
+          // Lazy load iframe (if any)
+          const iframe = card.querySelector('iframe[data-src]');
+          if (iframe) {
+            iframe.src = iframe.dataset.src;
+            iframe.removeAttribute('data-src');
+          }
+        });
+      }, {
+        rootMargin: '350px 0px',
+        threshold: 0.01
+      });
+
+      cards.forEach(card => lazyObserver.observe(card));
 
       const totalBadge = document.getElementById('totalBadge');
       if (totalBadge) totalBadge.textContent = `${mediaItems.length} Medya`;
